@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Java 开发工程师找工作经验总结</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1f2328;
+    --muted: #57606a;
+    --line: #d8dee4;
+    --accent: #0969da;
+    --ok: #1a7f37;
+    --warn: #9a6700;
+    --danger: #cf222e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 64px; }
+  header h1 { font-size: 28px; margin: 0 0 8px; }
+  header .meta { color: var(--muted); font-size: 14px; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; color: #fff; margin-right: 6px; vertical-align: middle;
+  }
+  .tag-blue   { background: var(--accent); }
+  .tag-green  { background: var(--ok); }
+  .tag-orange { background: var(--warn); }
+  .tag-red    { background: var(--danger); }
+  .tag-purple { background: #8250df; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 20px 24px; margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  h2 { font-size: 20px; margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  h3 { font-size: 16px; margin: 16px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #eef2f6; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  .yes { color: var(--ok); font-weight: 600; }
+  .no  { color: var(--danger); font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .vendor { font-weight: 700; }
+  footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .note {
+    background: #fff8e5; border: 1px solid #d4a72c66; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; margin: 12px 0;
+  }
+  .warn {
+    background: #ffebe9; border: 1px solid #cf222e44; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; margin: 12px 0;
+  }
+  .tip {
+    background: #dafbe1; border: 1px solid #1a7f3744; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; margin: 12px 0;
+  }
+  .flow-step {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 14px;
+    margin-right: 8px; flex-shrink: 0;
+  }
+  .flow-item { margin: 8px 0; display: flex; align-items: flex-start; }
+  .highlight { font-size: 15px; font-weight: 600; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>2026 Java 开发工程师找工作经验总结</h1>
+  <div class="meta">整理时间:2026 年 9 月 20 日 · 内容来源:小红书、知乎、牛客网、CSDN、掘金、JavaGuide、小林coding 等社区公开分享</div>
+</header>
+
+<div class="card">
+  <h2>一、结论速览</h2>
+  <ul>
+    <li><span class="tag tag-red">市场剧变</span>国内 Top 10 互联网大厂 2026 年 <b>传统 Java 业务开发岗 HC 整体缩减 60% 以上</b>,纯 CRUD 工程师的生存空间被严重压缩。</li>
+    <li><span class="tag tag-green">新方向</span>取而代之的是 <b>AI 融合方向</b>岗位需求大增:大模型应用开发、AI Agent、RAG、MCP、智能体编排等成为 Java 工程师的转型主线。</li>
+    <li><span class="tag tag-blue">面试风格</span>小红书等头部公司面试以<b>深度追问</b>著称,从一个知识点逐层深入到底层原理(JVM / OS / 网络),考察体系化思考能力。</li>
+    <li><span class="tag tag-purple">准备路线</span>推荐路线:Java 八股文(基础 + 集合 + 并发 + JVM + Spring) → MySQL + Redis → 分布式与微服务 → <b>大模型 AI + 云原生</b>(加分项)。</li>
+    <li><span class="tag tag-orange">求职策略</span>校招:提前批(7-8 月) → 秋招(9-10 月) → 春招补录(3-4 月);社招:金三银四、金九银十;简历用 STAR 法则,项目经验及时复盘。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>二、2026 年就业市场变化</h2>
+  <div class="warn">
+    <b>⚠️ 核心变化:传统 CRUD 岗位已淘汰,AI 融合才是方向</b><br>
+    据知乎、CSDN 多位博主总结:国内 Top10 互联网大厂 2026 年下半年 HC 规划中,传统 Java 业务开发岗招聘名额整体砍了 60% 以上。取而代之的是 AI 融合方向的岗位需求大增。
+  </div>
+
+  <h3>2.1 传统 Java 岗位 vs AI 融合岗位</h3>
+  <table>
+    <tr>
+      <th>对比项</th>
+      <th>传统 Java 业务开发</th>
+      <th>AI 融合方向</th>
+    </tr>
+    <tr>
+      <td>典型工作</td>
+      <td>Spring Boot + MyBatis + MySQL,CRUD + 业务逻辑</td>
+      <td>大模型接入、AI Agent 编排、RAG 系统、智能体开发</td>
+    </tr>
+    <tr>
+      <td>需求趋势</td>
+      <td class="no">↓ 缩减 60%+</td>
+      <td class="yes">↑ 大幅增长</td>
+    </tr>
+    <tr>
+      <td>薪资水平</td>
+      <td>校招 15-25K · 14-16薪</td>
+      <td>校招 20-40K · 14-16薪(溢价明显)</td>
+    </tr>
+    <tr>
+      <td>核心技能</td>
+      <td>Java + 框架 + SQL</td>
+      <td>Java + 框架 + <b>LLM API / RAG / Agent / Prompt Engineering</b></td>
+    </tr>
+    <tr>
+      <td>面试侧重</td>
+      <td>八股文 + 项目经验</td>
+      <td>八股文 + 项目经验 + <b>AI 应用场景理解</b></td>
+    </tr>
+    <tr>
+      <td>代表公司</td>
+      <td>中小互联网公司、传统 IT</td>
+      <td>字节、阿里、小红书、美团、百度等大厂</td>
+    </tr>
+  </table>
+
+  <div class="tip">
+    <b>💡 转型建议:</b>不需要从零开始学 Python,用 Java 生态(<b>Spring AI、LangChain4j、LlamaIndex Java</b>)接入大模型,配合 <b>MCP / Function Calling / RAG</b> 即可。
+  </div>
+</div>
+
+<div class="card">
+  <h2>三、面试准备路线图</h2>
+
+  <div class="flow-item"><span class="flow-step">1</span><div><b>第 1 周:Java 核心八股</b><br><span class="muted">基础语法、集合框架(HashMap / ConcurrentHashMap 底层)、多线程与并发(JUC)、JVM 内存模型 / GC / 类加载机制</span></div></div>
+  <div class="flow-item"><span class="flow-step">2</span><div><b>第 2 周:框架与中间件</b><br><span class="muted">Spring IoC/AOP/事务、MyBatis 原理、Redis 数据结构 + 持久化 + 集群、MySQL 索引 + 事务 + 锁 + 调优</span></div></div>
+  <div class="flow-item"><span class="flow-step">3</span><div><b>第 3 周:分布式与系统设计</b><br><span class="muted">微服务(Spring Cloud)、消息队列(Kafka/RocketMQ)、分布式锁/事务/ID、限流熔断、缓存策略</span></div></div>
+  <div class="flow-item"><span class="flow-step">4</span><div><b>第 4 周:AI + 项目亮点</b><br><span class="muted">大模型 API 调用、RAG 系统搭建、AI Agent 实践、项目复盘(STAR 法则)、模拟面试</span></div></div>
+
+  <div class="note">
+    <b>📌 速通方案:</b>如果时间紧张(如春招临近),<b>花 7 天背完八股面试 100 题</b>可以快速过一遍核心知识点,然后重点准备 2-3 个有亮点的项目经历。(来源:GitHub 0voice/2026-Computer-Spring-Recruitment)
+  </div>
+</div>
+
+<div class="card">
+  <h2>四、核心技术栈与高频考点</h2>
+
+  <h3>4.1 面试八股文主题分布</h3>
+  <table>
+    <tr>
+      <th>分类</th>
+      <th>高频考点</th>
+      <th>重要度</th>
+    </tr>
+    <tr>
+      <td>Java 基础</td>
+      <td>集合(HashMap、ArrayList、LinkedList)、Java 8+ 新特性、IO/NIO、反射、泛型、异常</td>
+      <td><span class="tag tag-red">必考</span></td>
+    </tr>
+    <tr>
+      <td>并发编程</td>
+      <td>线程池、synchronized / ReentrantLock、CAS / AQS、volatile、ThreadLocal、ConcurrentHashMap</td>
+      <td><span class="tag tag-red">必考</span></td>
+    </tr>
+    <tr>
+      <td>JVM</td>
+      <td>内存模型(JMM)、GC 算法与收集器(G1/ZGC)、类加载机制、JVM 调优(堆大小、GC 日志分析)</td>
+      <td><span class="tag tag-red">必考</span></td>
+    </tr>
+    <tr>
+      <td>Spring</td>
+      <td>IoC / AOP 原理、Bean 生命周期、事务传播机制、循环依赖、启动流程</td>
+      <td><span class="tag tag-red">必考</span></td>
+    </tr>
+    <tr>
+      <td>MySQL</td>
+      <td>索引(B+树)、事务(ACID/隔离级别)、MVCC、锁机制、慢 SQL 优化、分库分表</td>
+      <td><span class="tag tag-red">必考</span></td>
+    </tr>
+    <tr>
+      <td>Redis</td>
+      <td>数据结构底层、持久化(RDB/AOF)、主从 / 哨兵 / 集群、缓存穿透 / 击穿 / 雪崩、分布式锁</td>
+      <td><span class="tag tag-orange">高频</span></td>
+    </tr>
+    <tr>
+      <td>分布式</td>
+      <td>分布式 ID、分布式事务(Seata)、一致性 Hash、CAP / BASE、限流熔断(Sentinel)</td>
+      <td><span class="tag tag-orange">高频</span></td>
+    </tr>
+    <tr>
+      <td>消息队列</td>
+      <td>Kafka / RocketMQ 架构、消息可靠性、重复消费、顺序消息、延迟消息</td>
+      <td><span class="tag tag-orange">高频</span></td>
+    </tr>
+    <tr>
+      <td>计算机网络</td>
+      <td>TCP 三次握手 / 四次挥手、HTTP/HTTPS/HTTP2、Socket / NIO、IO 多路复用(epoll)</td>
+      <td><span class="tag tag-blue">常考</span></td>
+    </tr>
+    <tr>
+      <td>操作系统</td>
+      <td>进程 / 线程 / 协程、内存管理、虚拟内存、死锁、磁盘 IO</td>
+      <td><span class="tag tag-blue">常考</span></td>
+    </tr>
+    <tr>
+      <td><b>AI + 大模型</b></td>
+      <td>LLM API 调用、RAG 架构、Prompt Engineering、Function Calling、MCP 协议、向量数据库</td>
+      <td><span class="tag tag-green">2026 新增</span></td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>五、小红书面试流程与真题</h2>
+
+  <h3>5.1 面试流程(Java 后端)</h3>
+  <p>小红书面试通常为 <b>3 轮业务面 + 1 轮 HRBP 面</b>,每轮侧重点不同:</p>
+
+  <table>
+    <tr>
+      <th>轮次</th>
+      <th>时长</th>
+      <th>考察重点</th>
+    </tr>
+    <tr>
+      <td><span class="tag tag-blue">一面</span>技术深挖</td>
+      <td>45-60 分钟</td>
+      <td><b>深挖项目细节</b>,从你简历中的技术点逐层追问到底层原理。比如从 Java IO 问到 Socket 底层,从 Java 内存问到操作系统内存。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-purple">二面</span>核心能力</td>
+      <td>45-60 分钟</td>
+      <td>考察<b>系统设计能力</b>和<b>核心编码水平</b>,可能有现场 coding 题,关注代码质量和边界条件。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-orange">三面</span>文化契合</td>
+      <td>30-45 分钟</td>
+      <td>看<b>文化契合度</b>、成长潜力、学习能力和团队协作。小红书强调"真诚"和"用户视角"。</td>
+    </tr>
+    <tr>
+      <td><span class="tag tag-green">HRBP</span>综合面</td>
+      <td>20-30 分钟</td>
+      <td>薪资期望、职业规划、离职原因(如有)、稳定性。可借助 AI 辅助准备回答框架。</td>
+    </tr>
+  </table>
+
+  <h3>5.2 小红书高频面试真题</h3>
+  <p>根据小林 coding、CSDN、牛客网、知乎等多位面经分享者整理:</p>
+  <table>
+    <tr>
+      <th>主题</th>
+      <th>真题</th>
+    </tr>
+    <tr>
+      <td>IO / NIO</td>
+      <td>IO 多路复用的原理?select / poll / epoll 的区别?为什么 epoll 性能最好?</td>
+    </tr>
+    <tr>
+      <td>Redis</td>
+      <td>Redis 有哪些数据结构?每种底层实现是什么?Redis 为什么快?单线程为什么还能高并发?</td>
+    </tr>
+    <tr>
+      <td>并发</td>
+      <td>ConcurrentHashMap 的 put 流程?JDK 7 和 8 的区别?分段锁 vs CAS + synchronized?</td>
+    </tr>
+    <tr>
+      <td>MySQL</td>
+      <td>MySQL 有哪些存储引擎?InnoDB 和 MyISAM 的区别?MVCC 原理?</td>
+    </tr>
+    <tr>
+      <td>JVM</td>
+      <td>JVM 内存模型?对象创建过程?GC Roots 有哪些?G1 垃圾收集器原理?</td>
+    </tr>
+    <tr>
+      <td>系统设计</td>
+      <td>设计一个短链接系统 / 秒杀系统 / 消息推送系统?如何应对高并发?</td>
+    </tr>
+    <tr>
+      <td>项目深挖</td>
+      <td>你项目中用到的 XX 技术的原理是什么?遇到过什么线上问题?怎么排查和解决的?</td>
+    </tr>
+    <tr>
+      <td>编码题</td>
+      <td>算法题(LeetCode 中等难度为主):链表、二叉树、动态规划、排序算法手写</td>
+    </tr>
+  </table>
+
+  <div class="note">
+    <b>📌 小红书面试风格特点:</b>从一个知识点出发,<b>一层一层深入问到底层</b>。比如:Java IO → Socket 底层 → TCP 协议 → 操作系统内核缓冲区。不能只停留在 API 调用层面,要理解底层原理。
+  </div>
+</div>
+
+<div class="card">
+  <h2>六、求职经验与建议</h2>
+
+  <h3>6.1 简历优化</h3>
+  <ul>
+    <li><b>STAR 法则</b>:Situation(背景)→ Task(任务)→ Action(行动)→ Result(结果),每条项目经历都用这个框架。</li>
+    <li><b>量化成果</b>:不要只写"优化了 XX 功能",要写"将 XX 接口响应时间从 500ms 降低到 50ms,QPS 提升 10 倍"。</li>
+    <li><b>技术栈精准</b>:不要堆砌技术名词,只写<b>自己真正用过、能讲清楚原理</b>的技术。</li>
+    <li><b>AI 亮点</b>:如果有大模型相关项目(AI 助手、RAG 系统、智能体),一定要突出展示。</li>
+  </ul>
+
+  <h3>6.2 面试技巧</h3>
+  <ul>
+    <li><b>自我介绍</b>:控制在 2 分钟内,突出 1-2 个亮点项目 + 技术栈。</li>
+    <li><b>项目复盘</b>:每次面试后及时记录被问到的问题,查漏补缺。</li>
+    <li><b>白板编程</b>:多刷 LeetCode,每天 2-3 题保持手感。重点:数组、链表、树、动态规划。</li>
+    <li><b>模拟面试</b>:找朋友或用 AI 工具做模拟面试,练习表达和临场反应。</li>
+    <li><b>诚实应对</b>:不会的问题可以说"这块我了解不深,但我的理解是……",不要硬编答案。</li>
+  </ul>
+
+  <h3>6.3 时间线规划</h3>
+  <table>
+    <tr>
+      <th>阶段</th>
+      <th>时间</th>
+      <th>行动</th>
+    </tr>
+    <tr>
+      <td>提前批</td>
+      <td>7-8 月</td>
+      <td>大厂提前批(字节、美团、小红书等),难度相对低,练手好机会</td>
+    </tr>
+    <tr>
+      <td>秋招主战场</td>
+      <td>9-10 月</td>
+      <td>密集投递 + 面试,抓住"金九"黄金期</td>
+    </tr>
+    <tr>
+      <td>补录与春招</td>
+      <td>11-12 月 + 次年 3-4 月</td>
+      <td>秋招补录 + 春招,没拿到 offer 的最后机会</td>
+    </tr>
+    <tr>
+      <td>社招跳槽</td>
+      <td>金三银四 / 金九银十</td>
+      <td>3-4 月、9-10 月是跳槽旺季,岗位多、机会多</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>七、推荐资源</h2>
+
+  <h3>7.1 面试备战</h3>
+  <table>
+    <tr>
+      <th>资源</th>
+      <th>说明</th>
+      <th>链接</th>
+    </tr>
+    <tr>
+      <td>JavaGuide</td>
+      <td>2026 最新版 Java 后端面试通关计划,覆盖项目与简历、Java 核心、MySQL、Redis、Spring 等体系</td>
+      <td><a href="https://javaguide.cn/interview-preparation/backend-interview-plan.html">javaguide.cn</a></td>
+    </tr>
+    <tr>
+      <td>小林 coding</td>
+      <td>小红书等大厂面试真题解析,图解网络 / 操作系统 / MySQL / Redis</td>
+      <td><a href="https://www.xiaolincoding.com">xiaolincoding.com</a></td>
+    </tr>
+    <tr>
+      <td>面试鸭</td>
+      <td>2026 最新小红书面试题与答案解析,已助 10 万+ 程序员通过面试</td>
+      <td><a href="https://www.mianshiya.com/tag/小红书">mianshiya.com</a></td>
+    </tr>
+    <tr>
+      <td>牛客网</td>
+      <td>面经分享 + 笔试题库 + 讨论区</td>
+      <td><a href="https://www.nowcoder.com">nowcoder.com</a></td>
+    </tr>
+    <tr>
+      <td>力扣 LeetCode</td>
+      <td>算法刷题必备,大厂笔试真题</td>
+      <td><a href="https://leetcode.cn">leetcode.cn</a></td>
+    </tr>
+  </table>
+
+  <h3>7.2 面经合集</h3>
+  <table>
+    <tr>
+      <th>资源</th>
+      <th>说明</th>
+    </tr>
+    <tr>
+      <td>2026 计算机春招求职汇总</td>
+      <td>GitHub 开源项目,汇总了小红书、小鹏、微软等大厂面经 → <a href="https://github.com/0voice/2026-Computer-Spring-Recruitment-Job-Compilation">查看</a></td>
+    </tr>
+    <tr>
+      <td>面灵 AI - 小红书面经</td>
+      <td>37 篇面经,涵盖后端、机考、Java 平台开发 → <a href="https://mj.mianlingai.com/company/小红书/">查看</a></td>
+    </tr>
+    <tr>
+      <td>掘金 - 2026 版 Java 八股文</td>
+      <td>春招 + 秋招 + 社招全覆盖 → <a href="https://juejin.cn/post/7604012106155049006">查看</a></td>
+    </tr>
+    <tr>
+      <td>CSDN - 2026 年 Java 面试全攻略</td>
+      <td>从基础到大模型 AI 的 30 个技术栈 → <a href="https://bbs.csdn.net/weixin_31960565/article/details/100181435">查看</a></td>
+    </tr>
+  </table>
+</div>
+
+<footer>
+  内容整理自小红书、知乎、牛客网、CSDN、掘金、GitHub、JavaGuide、小林coding、面灵 AI、面试鸭 等社区公开分享。<br>
+  市场数据与薪资水平为撰写时的快照,仅供参考。
+</footer>
+
+</div>
+</body>
+</html>

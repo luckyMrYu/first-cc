@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-video-generation": {
+      "source": "genmedia-labs/skills",
+      "sourceType": "github",
+      "skillPath": "ai-video-generation/SKILL.md",
+      "computedHash": "a23d1ed6537a9a0543bb39fc9b3c3eaccff2c67062e906a6fd324129520faf94"
+    },
+    "seedance-2-5-image-to-video": {
+      "source": "genmedia-labs/skills",
+      "sourceType": "github",
+      "skillPath": "seedance-2-5-image-to-video/SKILL.md",
+      "computedHash": "182f704c9050a07c4ae09af5ef7a26e2413bb44d321b3feb6d660250691c54fb"
+    },
+    "wan-3-0-prime-reference-to-video": {
+      "source": "genmedia-labs/skills",
+      "sourceType": "github",
+      "skillPath": "wan-3-0-prime-reference-to-video/SKILL.md",
+      "computedHash": "dd222b56025eaabf1e6f7c6357a495387e7c87002899932781e5d0e42027b0c9"
+    }
+  }
+}
