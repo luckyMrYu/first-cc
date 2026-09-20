@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Java 面试备战手册：学习计划 + 核心知识点</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1f2328;
+    --muted: #57606a;
+    --line: #d8dee4;
+    --accent: #0969da;
+    --ok: #1a7f37;
+    --warn: #9a6700;
+    --danger: #cf222e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 64px; }
+  header h1 { font-size: 28px; margin: 0 0 8px; }
+  header .meta { color: var(--muted); font-size: 14px; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; color: #fff; margin-right: 6px; vertical-align: middle;
+  }
+  .tag-blue   { background: var(--accent); }
+  .tag-green  { background: var(--ok); }
+  .tag-orange { background: var(--warn); }
+  .tag-red    { background: var(--danger); }
+  .tag-purple { background: #8250df; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 20px 24px; margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  h2 { font-size: 20px; margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  h3 { font-size: 16px; margin: 16px 0 6px; color: var(--accent); }
+  h4 { font-size: 15px; margin: 12px 0 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #eef2f6; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  ul { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .note {
+    background: #fff8e5; border: 1px solid #d4a72c66; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; margin: 12px 0;
+  }
+  .warn {
+    background: #ffebe9; border: 1px solid #cf222e44; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; margin: 12px 0;
+  }
+  .tip {
+    background: #dafbe1; border: 1px solid #1a7f3744; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px; margin: 12px 0;
+  }
+  .qa { margin: 12px 0; }
+  .qa-q {
+    font-weight: 700; color: var(--accent); margin-bottom: 4px;
+    padding-left: 12px; border-left: 3px solid var(--accent);
+  }
+  .qa-a { padding-left: 15px; font-size: 14px; }
+  .qa-a code {
+    background: #eef2f6; padding: 1px 5px; border-radius: 3px;
+    font-size: 13px; font-family: Consolas, "Courier New", monospace;
+  }
+  .day-card {
+    background: #f8fafc; border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 18px; margin: 8px 0;
+  }
+  .day-card h4 { margin: 0 0 6px; color: var(--ok); }
+  .week-header {
+    background: linear-gradient(135deg, #0969da 0%, #8250df 100%);
+    color: #fff; padding: 10px 18px; border-radius: 8px; margin: 20px 0 10px;
+    font-size: 18px; font-weight: 700;
+  }
+  .progress-bar {
+    display: flex; gap: 4px; margin: 10px 0;
+  }
+  .progress-bar .seg {
+    flex: 1; height: 8px; border-radius: 4px; background: var(--line);
+  }
+  .progress-bar .seg.done { background: var(--ok); }
+  .progress-bar .seg.current { background: var(--accent); }
+  details { margin: 8px 0; }
+  details summary {
+    cursor: pointer; font-weight: 600; color: var(--accent);
+    padding: 6px 0; user-select: none;
+  }
+  details summary:hover { color: #0550ae; }
+  .toc { column-count: 2; column-gap: 20px; }
+  .toc a { color: var(--accent); text-decoration: none; font-size: 14px; display: block; padding: 2px 0; }
+  .toc a:hover { text-decoration: underline; }
+  .checklist li { list-style: none; padding-left: 0; }
+  .checklist li::before { content: "☐ "; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>2026 Java 面试备战手册</h1>
+  <div class="meta">学习计划 + 核心知识点详解 · 整理于 2026-09-20 · 复习完本手册，从容面对大厂面试</div>
+</header>
+
+<!-- ===================== 目录 ===================== -->
+<div class="card">
+  <h2>📑 目录</h2>
+  <div class="toc">
+    <a href="#plan">一、4 周学习计划（精确到每天）</a>
+    <a href="#java-basic">二、Java 基础 · 高频知识点</a>
+    <a href="#concurrent">三、并发编程 · 高频知识点</a>
+    <a href="#jvm">四、JVM · 高频知识点</a>
+    <a href="#spring">五、Spring · 高频知识点</a>
+    <a href="#mysql">六、MySQL · 高频知识点</a>
+    <a href="#redis">七、Redis · 高频知识点</a>
+    <a href="#distributed">八、分布式 · 高频知识点</a>
+    <a href="#network">九、计算机网络 · 高频知识点</a>
+    <a href="#mq">十、消息队列 · 高频知识点</a>
+    <a href="#ai">十一、AI + 大模型 · 2026 新增</a>
+    <a href="#design">十二、系统设计 · 实战题</a>
+    <a href="#hr">十三、HR 面 & 软技能</a>
+    <a href="#selfintro">十四、自我介绍模板</a>
+  </div>
+</div>
+
+<!-- ===================== 一、学习计划 ===================== -->
+<div class="card" id="plan">
+  <h2>一、4 周学习计划（精确到每天）</h2>
+  <p class="muted">每天建议投入 3-4 小时，周末可加量。打 ✅ 表示当天目标完成。</p>
+
+  <div class="week-header">📗 第 1 周：Java 核心八股</div>
+  <div class="progress-bar">
+    <div class="seg current"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+    <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 1 · Java 基础语法 & 面向对象</h4>
+    <ul class="checklist">
+      <li>== 与 equals 区别、hashCode 与 equals 约定</li>
+      <li>String / StringBuilder / StringBuffer 区别、字符串池</li>
+      <li>抽象类 vs 接口、Java 8 接口默认方法</li>
+      <li>重载 vs 重写、深拷贝 vs 浅拷贝</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 2 · 集合框架（上）</h4>
+    <ul class="checklist">
+      <li>ArrayList vs LinkedList 底层结构、扩容机制</li>
+      <li>HashMap 底层：数组 + 链表 + 红黑树、put 流程</li>
+      <li>HashMap 扩容（resize）过程、为什么容量是 2 的幂</li>
+      <li>哈希冲突解决方案：链地址法、负载因子 0.75</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 3 · 集合框架（下）</h4>
+    <ul class="checklist">
+      <li>ConcurrentHashMap：JDK7 分段锁 vs JDK8 CAS + synchronized</li>
+      <li>HashSet 底层 = HashMap、TreeSet 底层 = TreeMap</li>
+      <li>TreeMap 红黑树、Comparator vs Comparable</li>
+      <li>fail-fast vs fail-safe 迭代器</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 4 · 多线程与并发（上）</h4>
+    <ul class="checklist">
+      <li>Thread 生命周期（NEW → RUNNABLE → BLOCKED/WAITING/TIMED_WAITING → TERMINATED）</li>
+      <li>synchronized 原理：Monitor、锁升级（无锁 → 偏向锁 → 轻量级锁 → 重量级锁）</li>
+      <li>volatile：可见性、禁止指令重排、happens-before</li>
+      <li>ThreadLocal 原理、内存泄漏问题、InheritableThreadLocal</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 5 · 多线程与并发（下）</h4>
+    <ul class="checklist">
+      <li>线程池：7 个核心参数、4 种拒绝策略、为什么不用 Executors</li>
+      <li>AQS 原理：state + CLH 队列、ReentrantLock 公平/非公平</li>
+      <li>CAS 原理、ABA 问题、AtomicStampedReference</li>
+      <li>CountDownLatch / CyclicBarrier / Semaphore 使用场景</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 6 · JVM（上）</h4>
+    <ul class="checklist">
+      <li>JVM 内存结构：堆、方法区（元空间）、虚拟机栈、本地方法栈、程序计数器</li>
+      <li>对象创建过程：类加载检查 → 分配内存 → 初始化零值 → 设置对象头 → init</li>
+      <li>对象内存布局：对象头（Mark Word + 类型指针）、实例数据、对齐填充</li>
+      <li>类加载机制：加载 → 验证 → 准备 → 解析 → 初始化、双亲委派</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 7 · JVM（下）+ 本周复盘</h4>
+    <ul class="checklist">
+      <li>GC 算法：标记-清除、标记-复制、标记-整理、分代收集</li>
+      <li>垃圾收集器：Serial、ParNew、CMS、G1、ZGC（重点掌握 G1）</li>
+      <li>GC Roots 有哪些、如何判断对象可达</li>
+      <li>🔄 本周知识点复盘，默写 HashMap put 流程、线程池参数</li>
+    </ul>
+  </div>
+
+  <div class="week-header">📘 第 2 周：框架 + MySQL + Redis</div>
+  <div class="progress-bar">
+    <div class="seg done"></div><div class="seg current"></div><div class="seg"></div><div class="seg"></div>
+    <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 8 · Spring IoC & AOP</h4>
+    <ul class="checklist">
+      <li>IoC 容器：BeanFactory vs ApplicationContext</li>
+      <li>Bean 生命周期：实例化 → 属性注入 → Aware → BeanPostProcessor → InitializingBean → init-method → 使用 → destroy</li>
+      <li>AOP 原理：JDK 动态代理 vs CGLIB、切面/切点/通知</li>
+      <li>循环依赖如何解决：三级缓存</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 9 · Spring 事务 & Spring Boot</h4>
+    <ul class="checklist">
+      <li>事务传播行为 7 种（重点：REQUIRED、REQUIRES_NEW、NESTED）</li>
+      <li>事务失效场景：非 public、自调用、异常被吞、数据库不支持</li>
+      <li>Spring Boot 自动配置原理：@EnableAutoConfiguration → spring.factories / AutoConfiguration.imports</li>
+      <li>Spring Boot 启动流程</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 10 · MyBatis & IO/NIO</h4>
+    <ul class="checklist">
+      <li>MyBatis #{} 与 ${} 区别（防 SQL 注入）、一级/二级缓存</li>
+      <li>MyBatis 执行流程：SqlSessionFactory → SqlSession → Executor → StatementHandler</li>
+      <li>Java IO 流分类：字节流/字符流、装饰器模式</li>
+      <li>NIO 三大核心：Channel、Buffer、Selector、IO 多路复用</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 11 · MySQL 索引</h4>
+    <ul class="checklist">
+      <li>B+ 树结构、为什么不用 B 树 / 红黑树 / Hash</li>
+      <li>聚簇索引 vs 非聚簇索引、回表、覆盖索引</li>
+      <li>最左前缀匹配原则、索引失效场景</li>
+      <li>explain 执行计划：type、key、rows、Extra 字段含义</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 12 · MySQL 事务 & 锁</h4>
+    <ul class="checklist">
+      <li>ACID 特性、4 种隔离级别、默认 Repeatable Read</li>
+      <li>MVCC 原理：undo log 版本链 + ReadView</li>
+      <li>锁分类：全局锁 / 表锁 / 行锁、共享锁 vs 排他锁</li>
+      <li>间隙锁（Gap Lock）、临键锁（Next-Key Lock）、死锁排查</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 13 · MySQL 调优 & Redis 基础</h4>
+    <ul class="checklist">
+      <li>慢 SQL 优化步骤：explain → 索引优化 → SQL 改写 → 分库分表</li>
+      <li>日志系统：redo log（崩溃恢复）、undo log（事务回滚/MVCC）、binlog（主从复制/数据恢复）</li>
+      <li>Redis 数据类型：String、List、Hash、Set、ZSet 底层结构</li>
+      <li>Redis 为什么快：纯内存、单线程避免上下文切换、IO 多路复用、高效数据结构</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 14 · Redis 进阶 + 本周复盘</h4>
+    <ul class="checklist">
+      <li>持久化：RDB（fork + COW）vs AOF（append + rewrite）vs 混合持久化</li>
+      <li>缓存穿透（布隆过滤器）、缓存击穿（互斥锁/逻辑过期）、缓存雪崩（随机 TTL/多级缓存）</li>
+      <li>Redis 集群：主从复制、哨兵模式、Cluster 模式（哈希槽 16384）</li>
+      <li>🔄 本周复盘：默写 Spring Bean 生命周期、MVCC 原理、Redis 数据结构</li>
+    </ul>
+  </div>
+
+  <div class="week-header">📙 第 3 周：分布式 + 网络 + 消息队列</div>
+  <div class="progress-bar">
+    <div class="seg done"></div><div class="seg done"></div><div class="seg current"></div><div class="seg"></div>
+    <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 15 · 计算机网络（上）</h4>
+    <ul class="checklist">
+      <li>OSI 七层 / TCP/IP 四层模型</li>
+      <li>TCP 三次握手：为什么三次？两次不行？（防止历史连接）</li>
+      <li>TCP 四次挥手：为什么四次？TIME_WAIT 作用？持续 2MSL？</li>
+      <li>TCP vs UDP 区别、TCP 拥塞控制、滑动窗口、流量控制</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 16 · 计算机网络（下）</h4>
+    <ul class="checklist">
+      <li>HTTP 1.0 / 1.1 / 2.0 / 3.0 区别（长连接、多路复用、头部压缩、QUIC）</li>
+      <li>HTTPS 握手过程：非对称加密交换密钥 + 对称加密传输数据</li>
+      <li>HTTP 状态码：2xx / 3xx / 4xx / 5xx 常见含义</li>
+      <li>从输入 URL 到页面展示全过程（高频综合题）</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 17 · 分布式理论</h4>
+    <ul class="checklist">
+      <li>CAP 定理（三选二）、BASE 理论（最终一致性）</li>
+      <li>分布式 ID：UUID、雪花算法（Snowflake）、号段模式</li>
+      <li>分布式事务：2PC、3PC、TCC、Saga、本地消息表、最大努力通知</li>
+      <li>一致性 Hash、Hash 环、虚拟节点</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 18 · 微服务 & 限流</h4>
+    <ul class="checklist">
+      <li>微服务核心组件：注册中心（Nacos）、配置中心、网关（Gateway）、RPC（Dubbo/gRPC）</li>
+      <li>服务熔断 / 降级 / 限流区别、Sentinel 原理</li>
+      <li>限流算法：固定窗口、滑动窗口、漏桶、令牌桶</li>
+      <li>分布式锁实现：Redis（SETNX + 过期 / Redisson）vs ZooKeeper 临时有序节点</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 19 · 消息队列（上）</h4>
+    <ul class="checklist">
+      <li>为什么用 MQ：解耦、异步、削峰</li>
+      <li>Kafka 架构：Broker、Topic、Partition、Consumer Group</li>
+      <li>Kafka 为什么快：顺序写磁盘、零拷贝（sendfile）、页缓存、批量发送</li>
+      <li>如何保证消息不丢失：生产者确认、Broker 持久化、消费者手动提交</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 20 · 消息队列（下）+ 本周复盘</h4>
+    <ul class="checklist">
+      <li>如何保证消息不重复消费（幂等性）：唯一 ID + 数据库唯一约束 / Redis SETNX</li>
+      <li>如何保证消息顺序：单 Partition + 单 Consumer</li>
+      <li>消息积压怎么办：扩容 Consumer、临时 Topic 转储</li>
+      <li>🔄 本周复盘：默写 TCP 三次握手、分布式事务方案、Kafka 架构</li>
+    </ul>
+  </div>
+
+  <div class="week-header">📕 第 4 周：AI + 系统设计 + 模拟面试</div>
+  <div class="progress-bar">
+    <div class="seg done"></div><div class="seg done"></div><div class="seg done"></div><div class="seg current"></div>
+    <div class="seg"></div><div class="seg"></div><div class="seg"></div>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 21 · AI + 大模型基础</h4>
+    <ul class="checklist">
+      <li>LLM 基本概念：Token、Prompt、Temperature、Top-P</li>
+      <li>Java 调用大模型 API：OpenAI / Claude / 通义千问 SDK</li>
+      <li>Prompt Engineering 技巧：角色设定、Few-shot、CoT 思维链</li>
+      <li>Function Calling / Tool Use 原理与应用场景</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 22 · RAG & Agent</h4>
+    <ul class="checklist">
+      <li>RAG 架构：文档切分 → Embedding → 向量数据库 → 检索 → Prompt 组装 → LLM 生成</li>
+      <li>向量数据库：Milvus、Pinecone、Elasticsearch 8.x 向量检索</li>
+      <li>AI Agent 架构：ReAct 模式、规划-执行-观察循环</li>
+      <li>MCP 协议（Model Context Protocol）概念与 Java 实现</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 23 · Spring AI 实战</h4>
+    <ul class="checklist">
+      <li>Spring AI 核心：ChatClient、Prompt、OutputParser</li>
+      <li>LangChain4j 框架：AiService、Memory、RAG 组件</li>
+      <li>搭建一个简单的 RAG 应用：PDF 解析 → 分块 → 向量化 → 检索问答</li>
+      <li>AI 项目亮点总结（写进简历）</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 24 · 系统设计（上）</h4>
+    <ul class="checklist">
+      <li>系统设计方法论：需求分析 → 高层设计 → 详细设计 → 瓶颈优化</li>
+      <li>秒杀系统设计：前端限流 → CDN → 网关限流 → Redis 预扣库存 → MQ 异步下单</li>
+      <li>短链接系统：Hash / 自增 ID / 雪花算法 → Base62 编码 → 302 重定向</li>
+      <li>消息推送系统：长连接（WebSocket）+ 消息队列 + 离线存储</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 25 · 系统设计（下）</h4>
+    <ul class="checklist">
+      <li>Feed 流系统：推模式（写扩散）vs 拉模式（读扩散）vs 推拉结合</li>
+      <li>订单系统设计：状态机、超时取消、分布式事务</li>
+      <li>高并发三板斧：缓存、限流、异步</li>
+      <li>如何估算：QPS → 机器数 → 存储量 → 带宽</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 26 · 简历打磨 & 项目复盘</h4>
+    <ul class="checklist">
+      <li>用 STAR 法则重写每个项目经历</li>
+      <li>准备 2-3 个核心项目的深度复盘（技术选型、难点、解决方案、成果量化）</li>
+      <li>准备"遇到的最大技术挑战"故事</li>
+      <li>准备"如何推动技术方案落地"故事</li>
+    </ul>
+  </div>
+
+  <div class="day-card">
+    <h4>Day 27-28 · 模拟面试 + 查漏补缺</h4>
+    <ul class="checklist">
+      <li>找朋友或 AI 做 2 轮模拟面试（各 60 分钟）</li>
+      <li>练习自我介绍（控制在 2 分钟内）</li>
+      <li>每天 2-3 道 LeetCode 保持手感（Hot 100）</li>
+      <li>🔄 全部知识点总复盘</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== 二、Java 基础 ===================== -->
+<div class="card" id="java-basic">
+  <h2>二、Java 基础 · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：== 和 equals 的区别？</div>
+    <div class="qa-a">
+      <code>==</code> 比较的是引用（内存地址），基本类型比较值。<code>equals()</code> 默认行为同 <code>==</code>，但 <code>String</code>、<code>Integer</code> 等类重写了 <code>equals()</code> 比较内容/值。<br>
+      <b>重写 equals 必须重写 hashCode</b>，否则 HashMap/HashSet 无法正常工作。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：HashMap 的 put 流程？（必考）</div>
+    <div class="qa-a">
+      ① 计算 key 的 hash 值（高 16 位 ^ 低 16 位，扰动函数）<br>
+      ② 根据 hash 定位桶位置 <code>i = (n-1) & hash</code><br>
+      ③ 桶为空 → 直接放入<br>
+      ④ 桶不为空 → 判断首节点 key 是否相同（hash 相等且 equals 为 true）<br>
+      ⑤ 如果是红黑树 → <code>putTreeVal</code><br>
+      ⑥ 否则遍历链表，尾插法插入；key 相同则覆盖 value<br>
+      ⑦ 插入后判断是否需要扩容（size > threshold）或树化（链表长度 ≥ 8 且数组长度 ≥ 64）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：HashMap 为什么容量是 2 的幂？</div>
+    <div class="qa-a">
+      ① <code>hash % n</code> 等价于 <code>hash & (n-1)</code>，位运算更高效<br>
+      ② 扩容时，元素要么在原位置，要么在 <code>原位置 + 旧容量</code>，不需要重新计算 hash<br>
+      ③ 2 的幂 - 1 的二进制全是 1，hash 分布更均匀
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：ArrayList 和 LinkedList 的区别？</div>
+    <div class="qa-a">
+      <b>ArrayList</b>：动态数组，随机访问 O(1)，尾部插入均摊 O(1)，中间插入 O(n)。扩容为原来的 1.5 倍。<br>
+      <b>LinkedList</b>：双向链表，随机访问 O(n)，头尾插入 O(1)。额外存储前后指针，内存开销更大。<br>
+      <b>实际开发</b>：绝大多数场景用 ArrayList，CPU 缓存友好。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：ConcurrentHashMap 如何实现线程安全？（必考）</div>
+    <div class="qa-a">
+      <b>JDK 7</b>：分段锁（Segment 数组），每个 Segment 继承 ReentrantLock，并发度 = Segment 个数（默认 16）。<br>
+      <b>JDK 8</b>：取消 Segment，采用 <code>Node 数组 + 链表 + 红黑树</code>，使用 <code>CAS + synchronized</code> 锁住链表头节点，锁粒度更细。size() 使用 <code>baseCount + CounterCell[]</code> 类似 LongAdder 的方式统计。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：String 为什么是不可变的？</div>
+    <div class="qa-a">
+      ① <code>String</code> 类声明为 <code>final</code>，不可继承<br>
+      ② 内部 <code>char[] value</code>（JDK 9+ 改为 <code>byte[]</code>）声明为 <code>private final</code><br>
+      ③ 所有修改操作都返回新对象<br>
+      <b>好处</b>：字符串常量池、线程安全、hashCode 可缓存（只需计算一次）、安全性（作为 HashMap key、类加载参数）。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q7：Java 8 有哪些新特性？</div>
+    <div class="qa-a">
+      ① Lambda 表达式 & Stream API<br>
+      ② 接口默认方法（default）和静态方法<br>
+      ③ Optional 类（避免 NPE）<br>
+      ④ 新的日期时间 API（LocalDate/LocalTime/LocalDateTime）<br>
+      ⑤ 方法引用（<code>::</code>）<br>
+      ⑥ CompletableFuture<br>
+      ⑦ HashMap 底层优化（链表 → 红黑树）
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 三、并发编程 ===================== -->
+<div class="card" id="concurrent">
+  <h2>三、并发编程 · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：线程池的 7 个核心参数？（必考）</div>
+    <div class="qa-a">
+      <code>ThreadPoolExecutor</code> 构造函数：<br>
+      ① <b>corePoolSize</b>：核心线程数（即使空闲也不回收）<br>
+      ② <b>maximumPoolSize</b>：最大线程数<br>
+      ③ <b>keepAliveTime</b>：非核心线程空闲存活时间<br>
+      ④ <b>unit</b>：时间单位<br>
+      ⑤ <b>workQueue</b>：阻塞队列（LinkedBlockingQueue / ArrayBlockingQueue / SynchronousQueue）<br>
+      ⑥ <b>threadFactory</b>：线程工厂（可设置线程名）<br>
+      ⑦ <b>handler</b>：拒绝策略（AbortPolicy / CallerRunsPolicy / DiscardPolicy / DiscardOldestPolicy）<br><br>
+      <b>任务提交流程</b>：核心线程未满 → 创建核心线程；核心满了 → 入队列；队列满了 → 创建非核心线程直到 max；都满了 → 执行拒绝策略。<br>
+      <b>为什么不用 Executors</b>：FixedThreadPool / SingleThread 队列长度为 Integer.MAX_VALUE（OOM 风险）；CachedThreadPool 最大线程数为 Integer.MAX_VALUE（OOM 风险）。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：synchronized 的原理？锁升级过程？</div>
+    <div class="qa-a">
+      <b>原理</b>：基于 Monitor（监视器锁）。同步代码块用 <code>monitorenter/monitorexit</code> 字节码指令；同步方法用 <code>ACC_SYNCHRONIZED</code> 标志。<br>
+      <b>锁升级</b>（只能升级不能降级）：<br>
+      ① <b>无锁</b>：没有竞争<br>
+      ② <b>偏向锁</b>：Mark Word 记录线程 ID，单线程访问无竞争（JDK 15 默认关闭）<br>
+      ③ <b>轻量级锁</b>：出现竞争，膨胀为轻量级锁，Mark Word 指向 Monitor，线程自旋等待<br>
+      ④ <b>重量级锁</b>：自旋失败，升级为重量级锁，线程阻塞（操作系统层面，涉及用户态/内核态切换）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：volatile 的作用和原理？</div>
+    <div class="qa-a">
+      ① <b>可见性</b>：修改变量后立即写回主内存，读变量时从主内存读取（通过 lock 前缀指令锁定缓存行）<br>
+      ② <b>禁止指令重排</b>：通过内存屏障（Memory Barrier）保证有序性<br>
+      ③ <b>不保证原子性</b>：<code>i++</code> 不是原子操作，需要用 AtomicInteger<br>
+      <b>经典应用</b>：DCL 单例模式中 <code>instance</code> 必须加 volatile，防止指令重排导致拿到未初始化对象。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：ThreadLocal 原理？内存泄漏？</div>
+    <div class="qa-a">
+      <b>原理</b>：每个 Thread 对象内部有一个 <code>ThreadLocalMap</code>，key 是 ThreadLocal 的弱引用，value 是强引用。调用 <code>threadLocal.set(value)</code> 实际是存入当前线程的 map。<br>
+      <b>内存泄漏</b>：如果 ThreadLocal 外部强引用被置 null，GC 后 key 被回收，但 value 还被 ThreadLocalMap.Entry 强引用。如果线程不结束（线程池），value 永远无法回收。<br>
+      <b>解决</b>：用完后一定要调用 <code>remove()</code>。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：AQS 原理？ReentrantLock 怎么用？</div>
+    <div class="qa-a">
+      <b>AQS（AbstractQueuedSynchronizer）</b> 核心：<br>
+      ① <code>state</code> 变量（volatile int）表示同步状态<br>
+      ② FIFO 的 CLH 变体双向队列，存放等待线程<br>
+      ③ 基于 CAS 修改 state<br><br>
+      <b>ReentrantLock</b>：state=0 表示未锁定，state>0 表示重入次数。公平锁先检查队列有没有等待线程；非公平锁直接 CAS 抢锁，失败才入队。<br>
+      <b>对比 synchronized</b>：ReentrantLock 可中断（<code>lockInterruptibly</code>）、可超时（<code>tryLock</code>）、可公平、支持多个 Condition。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：CAS 原理？ABA 问题？</div>
+    <div class="qa-a">
+      <b>CAS（Compare And Swap）</b>：比较并交换，包含三个操作数：内存位置 V、预期值 A、新值 B。只有 V == A 时才把 V 更新为 B。这是一条 CPU 原子指令（<code>cmpxchg</code>）。<br>
+      <b>ABA 问题</b>：V 从 A 变成 B 又变回 A，CAS 认为没变过。解决方案：<code>AtomicStampedReference</code>（带版本号）或 <code>AtomicMarkableReference</code>。<br>
+      <b>CAS 缺点</b>：自旋开销（长时间失败会空转 CPU）、只能保证一个变量的原子操作。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q7：CountDownLatch / CyclicBarrier / Semaphore 区别？</div>
+    <div class="qa-a">
+      <b>CountDownLatch</b>：计数器，await() 等待计数器归零，一次性的（不能重置）。场景：主线程等待多个子线程完成。<br>
+      <b>CyclicBarrier</b>：循环屏障，所有线程到达屏障后一起执行，可重置（<code>reset()</code>）。场景：多线程分阶段计算。<br>
+      <b>Semaphore</b>：信号量，控制同时访问的线程数（<code>acquire/release</code>）。场景：限流、数据库连接池。
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 四、JVM ===================== -->
+<div class="card" id="jvm">
+  <h2>四、JVM · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：JVM 内存结构？（必考）</div>
+    <div class="qa-a">
+      ① <b>程序计数器</b>：线程私有，记录当前线程执行的字节码行号<br>
+      ② <b>虚拟机栈</b>：线程私有，每个方法调用创建一个栈帧（局部变量表、操作数栈、动态链接、返回地址）<br>
+      ③ <b>本地方法栈</b>：为 Native 方法服务<br>
+      ④ <b>堆</b>：线程共享，对象实例分配的地方，GC 主要区域。分年轻代（Eden + S0 + S1，比例 8:1:1）和老年代<br>
+      ⑤ <b>方法区（元空间，JDK 8+）</b>：存储类信息、常量、静态变量、JIT 编译代码。JDK 8 后改用本地内存实现（MetaSpace）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：对象的创建过程？</div>
+    <div class="qa-a">
+      ① <b>类加载检查</b>：检查类是否已加载<br>
+      ② <b>分配内存</b>：指针碰撞（堆规整）或空闲列表（堆不规整），并发用 CAS + 失败重试或 TLAB（线程本地分配缓冲区）<br>
+      ③ <b>初始化零值</b>：成员变量赋默认值（int=0, object=null）<br>
+      ④ <b>设置对象头</b>：Mark Word（hashcode、GC 分代年龄、锁状态等）+ 类型指针（指向方法区的类元数据）<br>
+      ⑤ <b>执行 &lt;init&gt;</b>：构造方法
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：类加载机制？双亲委派？如何打破？</div>
+    <div class="qa-a">
+      <b>类加载过程</b>：加载 → 验证 → 准备 → 解析 → 初始化<br>
+      <b>双亲委派</b>：ClassLoader 收到请求先委派父加载器，父加载器无法加载才自己加载。BootStrap → Extension → Application → Custom。<br>
+      <b>好处</b>：避免类重复加载、保护核心 API 不被篡改。<br>
+      <b>打破方式</b>：<br>
+      ① 重写 <code>loadClass()</code> 方法<br>
+      ② 线程上下文类加载器（SPI 机制，如 JDBC、JNDI）<br>
+      ③ OSGi 热部署
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：垃圾回收算法？</div>
+    <div class="qa-a">
+      ① <b>标记-清除</b>：标记存活对象，清除未标记的。缺点：内存碎片<br>
+      ② <b>标记-复制</b>：将存活对象复制到另一块区域。缺点：浪费一半空间。适合年轻代（对象存活率低）<br>
+      ③ <b>标记-整理</b>：标记后将存活对象向一端移动。适合老年代<br>
+      ④ <b>分代收集</b>：年轻代用复制算法，老年代用标记-清除/整理
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：G1 垃圾收集器原理？</div>
+    <div class="qa-a">
+      G1（Garbage First）将堆划分为多个大小相等的 <b>Region</b>（默认 2048 个），每个 Region 可以是 Eden、Survivor、Old 或 Humongous（大对象）。<br>
+      <b>核心特点</b>：<br>
+      ① 可预测的停顿时间（<code>-XX:MaxGCPauseMillis</code>）<br>
+      ② 优先回收垃圾最多的 Region（Garbage First 由来）<br>
+      ③ 使用 <code>RSet（Remembered Set）</code> 记录跨 Region 引用<br>
+      ④ 垃圾识别使用 <code>SATB（Snapshot-At-The-Beginning）</code> 算法<br>
+      <b>回收过程</b>：初始标记（STW，借助 Minor GC）→ 并发标记 → 最终标记（STW，处理 RSet）→ 筛选回收（STW，选择 Region 复制回收）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：GC Roots 有哪些？</div>
+    <div class="qa-a">
+      ① 虚拟机栈中引用的对象（局部变量）<br>
+      ② 方法区中静态属性引用的对象<br>
+      ③ 方法区中常量引用的对象<br>
+      ④ 本地方法栈中 JNI 引用的对象<br>
+      ⑤ 被同步锁（synchronized）持有的对象<br>
+      ⑥ JVM 内部引用（基本类型的 Class 对象、系统类加载器、异常对象等）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q7：如何排查 OOM？</div>
+    <div class="qa-a">
+      ① 启动参数加 <code>-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path</code><br>
+      ② 使用 MAT（Memory Analyzer Tool）或 JProfiler 分析 heap dump<br>
+      ③ 查看 GC Roots 引用链，找到泄漏对象的创建位置<br>
+      ④ 常见原因：集合类未清理、ThreadLocal 未 remove、大对象未关闭、连接未释放
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 五、Spring ===================== -->
+<div class="card" id="spring">
+  <h2>五、Spring · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：Spring IoC 原理？</div>
+    <div class="qa-a">
+      <b>IoC（控制反转）</b>：对象的创建和依赖关系由 Spring 容器管理，而不是手动 new。<br>
+      <b>DI（依赖注入）</b> 是 IoC 的实现方式：<br>
+      ① 解析配置文件/注解，生成 BeanDefinition<br>
+      ② BeanFactory 根据 BeanDefinition 创建 Bean 实例<br>
+      ③ 通过反射注入依赖属性<br>
+      <b>BeanFactory</b>：Spring 底层容器，延迟初始化。<b>ApplicationContext</b>：BeanFactory 的子接口，启动时预创建单例 Bean，支持国际化、事件发布等高级功能。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：Spring Bean 生命周期？（必考）</div>
+    <div class="qa-a">
+      ① <b>实例化</b>（Instantiation）：反射创建对象<br>
+      ② <b>属性注入</b>（Populate）：注入依赖<br>
+      ③ <b>Aware 回调</b>：BeanNameAware、BeanFactoryAware、ApplicationContextAware<br>
+      ④ <b>BeanPostProcessor.postProcessBeforeInitialization()</b><br>
+      ⑤ <b>初始化</b>：@PostConstruct → InitializingBean.afterPropertiesSet() → init-method<br>
+      ⑥ <b>BeanPostProcessor.postProcessAfterInitialization()</b>（AOP 代理在此创建）<br>
+      ⑦ <b>使用</b><br>
+      ⑧ <b>销毁</b>：@PreDestroy → DisposableBean.destroy() → destroy-method
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：Spring AOP 原理？</div>
+    <div class="qa-a">
+      <b>AOP（面向切面编程）</b> 将横切关注点（日志、事务、权限）与业务逻辑分离。<br>
+      <b>实现原理</b>：<br>
+      ① <b>JDK 动态代理</b>：目标类实现了接口，使用 <code>java.lang.reflect.Proxy</code><br>
+      ② <b>CGLIB 代理</b>：目标类没有实现接口，通过生成子类（不能代理 final 类和方法）<br>
+      <b>核心概念</b>：切面（Aspect）、切点（Pointcut）、通知（Advice：Before/After/Around/AfterReturning/AfterThrowing）、连接点（JoinPoint）<br>
+      Spring Boot 2.x 默认使用 CGLIB。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：Spring 如何解决循环依赖？（三级缓存）</div>
+    <div class="qa-a">
+      <b>循环依赖</b>：A 依赖 B，B 依赖 A。<br>
+      <b>解决方式</b>：三级缓存<br>
+      ① <code>singletonObjects</code>：存放完全初始化好的 Bean<br>
+      ② <code>earlySingletonObjects</code>：存放早期暴露的 Bean（未完全初始化）<br>
+      ③ <code>singletonFactories</code>：存放 ObjectFactory（用于创建早期 Bean）<br>
+      <b>流程</b>：A 创建 → 实例化 → 放入三级缓存 → 注入 B → B 创建 → 注入 A（从三级缓存获取，如果有 AOP 则创建代理放入二级缓存）→ B 完成 → A 完成。<br>
+      <b>不能解决</b>：构造器注入的循环依赖（对象还没创建）、prototype 作用域。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：Spring 事务失效的场景？</div>
+    <div class="qa-a">
+      ① 方法不是 <code>public</code><br>
+      ② <b>自调用</b>：同一个类中 A 方法调 B 方法（不经过代理）<br>
+      ③ 异常被 try-catch 吞了<br>
+      ④ 数据库不支持事务（如 MySQL MyISAM）<br>
+      ⑤ 传播行为设置错误（如 <code>NOT_SUPPORTED</code>）<br>
+      ⑥ 没有被 Spring 管理（类没加 @Service）<br>
+      ⑦ 多线程调用（不同线程不同连接）<br>
+      <b>解决自调用</b>：注入自身、AopContext.currentProxy()、拆分类。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：Spring Boot 自动配置原理？</div>
+    <div class="qa-a">
+      ① <code>@SpringBootApplication</code> 包含 <code>@EnableAutoConfiguration</code><br>
+      ② <code>@EnableAutoConfiguration</code> 通过 <code>@Import(AutoConfigurationImportSelector.class)</code> 导入自动配置类<br>
+      ③ 读取 <code>META-INF/spring.factories</code>（Spring Boot 2.x）或 <code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code>（Spring Boot 3.x）<br>
+      ④ 根据 <code>@Conditional</code> 条件注解（如 <code>@ConditionalOnClass</code>）决定是否生效<br>
+      ⑤ 生效的配置类注册 Bean 到容器
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 六、MySQL ===================== -->
+<div class="card" id="mysql">
+  <h2>六、MySQL · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：B+ 树索引结构？为什么不用 B 树？</div>
+    <div class="qa-a">
+      <b>B+ 树特点</b>：<br>
+      ① 非叶子节点只存 key，不存数据；叶子节点存数据<br>
+      ② 叶子节点用双向链表连接，范围查询高效<br>
+      ③ 所有查询都到叶子节点，查询性能稳定 O(log n)<br>
+      <b>对比 B 树</b>：B 树每个节点都存数据，无法做高效范围查询；B+ 树非叶子节点能存更多 key，树更矮，磁盘 IO 更少。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：聚簇索引 vs 非聚簇索引？回表？覆盖索引？</div>
+    <div class="qa-a">
+      <b>聚簇索引</b>：叶子节点直接存整行数据。InnoDB 主键索引就是聚簇索引，一张表只有一个。<br>
+      <b>非聚簇索引（二级索引）</b>：叶子节点存的是主键值。<br>
+      <b>回表</b>：通过二级索引找到主键后，再去聚簇索引查完整数据。一次回表 = 一次额外 IO。<br>
+      <b>覆盖索引</b>：查询的字段都被索引覆盖，不需要回表。<code>EXPLAIN</code> 中 <code>Extra: Using index</code>。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：索引失效的场景？</div>
+    <div class="qa-a">
+      ① 不满足<b>最左前缀</b>原则（联合索引 (a,b,c)，查询没用 a）<br>
+      ② 对索引列使用<b>函数/运算</b>（<code>WHERE YEAR(create_time) = 2026</code>）<br>
+      ③ <b>隐式类型转换</b>（varchar 列用数字查）<br>
+      ④ <code>LIKE</code> 以通配符开头（<code>LIKE '%abc'</code>）<br>
+      ⑤ <code>OR</code> 条件中有非索引列<br>
+      ⑥ <code>NOT IN</code> / <code>!=</code> / <code>&lt;&gt;</code> 在某些情况下<br>
+      ⑦ 优化器判断全表扫描更快（数据量小 / 选择性差）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：MVCC 原理？</div>
+    <div class="qa-a">
+      <b>MVCC（多版本并发控制）</b> 实现读写不冲突。<br>
+      <b>核心组件</b>：<br>
+      ① <b>隐藏列</b>：每行数据有 <code>DB_TRX_ID</code>（最后修改的事务 ID）和 <code>DB_ROLL_PTR</code>（回滚指针）<br>
+      ② <b>undo log 版本链</b>：每次修改生成旧版本，通过 roll_ptr 串联<br>
+      ③ <b>ReadView（读视图）</b>：事务快照读时生成，包含活跃事务列表<br>
+      &nbsp;&nbsp;- <code>m_ids</code>：生成 ReadView 时活跃（未提交）的事务 ID 列表<br>
+      &nbsp;&nbsp;- <code>min_trx_id</code>：活跃事务中最小 ID<br>
+      &nbsp;&nbsp;- <code>max_trx_id</code>：生成 ReadView 时系统应该给下一个分配的事务 ID<br>
+      &nbsp;&nbsp;- <code>creator_trx_id</code>：创建该 ReadView 的事务 ID<br>
+      <b>可见性规则</b>：版本链中从上往下找，找到第一个对当前事务可见的版本。<br>
+      RC 隔离级别每次 SELECT 都生成新的 ReadView；RR 隔离级别只在第一次 SELECT 生成。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：MySQL 锁机制？</div>
+    <div class="qa-a">
+      <b>按粒度</b>：<br>
+      ① <b>全局锁</b>：锁整个数据库实例（<code>FLUSH TABLES WITH READ LOCK</code>，用于备份）<br>
+      ② <b>表级锁</b>：表锁、元数据锁（MDL）、意向锁（IS/IX）<br>
+      ③ <b>行级锁</b>：Record Lock（记录锁）、Gap Lock（间隙锁）、Next-Key Lock（临键锁 = 记录锁 + 间隙锁）<br>
+      <b>按类型</b>：共享锁（S 锁，读）、排他锁（X 锁，写）<br>
+      <b>间隙锁</b>：防止幻读，锁定索引间隙。<code>SELECT ... FOR UPDATE</code> 在 RR 级别会加 Next-Key Lock。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：redo log、undo log、binlog 区别？</div>
+    <div class="qa-a">
+      <b>redo log</b>（InnoDB 引擎层）：<br>
+      ① 物理日志，记录"在某个数据页上做了什么修改"<br>
+      ② 循环写，WAL（Write-Ahead Logging）技术<br>
+      ③ 用于<b>崩溃恢复</b>（crash-safe）<br><br>
+      <b>undo log</b>（InnoDB 引擎层）：<br>
+      ① 逻辑日志，记录数据的反向操作<br>
+      ② 用于<b>事务回滚</b>和 <b>MVCC</b><br><br>
+      <b>binlog</b>（MySQL Server 层）：<br>
+      ① 逻辑日志，记录所有 DDL 和 DML<br>
+      ② 追加写，不会覆盖<br>
+      ③ 用于<b>主从复制</b>和<b>数据恢复</b>（<code>mysqlbinlog</code>）<br><br>
+      <b>两阶段提交</b>：保证 redo log 和 binlog 一致性。prepare → 写 binlog → commit。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q7：慢 SQL 如何排查和优化？</div>
+    <div class="qa-a">
+      ① 开启慢查询日志：<code>slow_query_log = ON</code>，<code>long_query_time = 1</code><br>
+      ② 使用 <code>EXPLAIN</code> 分析执行计划：<br>
+      &nbsp;&nbsp;- <code>type</code>：system > const > eq_ref > ref > range > index > ALL（至少到 range）<br>
+      &nbsp;&nbsp;- <code>key</code>：实际使用的索引<br>
+      &nbsp;&nbsp;- <code>rows</code>：扫描行数<br>
+      &nbsp;&nbsp;- <code>Extra</code>：Using filesort（排序优化）、Using temporary（临时表优化）<br>
+      ③ 优化索引、改写 SQL、避免回表、分页优化（延迟关联）<br>
+      ④ 大数据量：分库分表（ShardingSphere）
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 七、Redis ===================== -->
+<div class="card" id="redis">
+  <h2>七、Redis · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：Redis 数据类型及底层结构？</div>
+    <div class="qa-a">
+      ① <b>String</b>：SDS（Simple Dynamic String）<br>
+      ② <b>List</b>：quicklist = ziplist + 双向链表（Redis 7+ 改为 listpack）<br>
+      ③ <b>Hash</b>：ziplist / listpack（数据少）→ hashtable（数据多）<br>
+      ④ <b>Set</b>：intset（全是整数）→ hashtable<br>
+      ⑤ <b>ZSet</b>：ziplist / listpack（数据少）→ skiplist + hashtable（数据多）<br>
+      ⑥ <b>特殊类型</b>：Bitmap、HyperLogLog、GEO、Stream
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：Redis 为什么快？为什么单线程还能高并发？</div>
+    <div class="qa-a">
+      ① <b>纯内存操作</b><br>
+      ② <b>单线程</b>避免了多线程的上下文切换和锁竞争<br>
+      ③ <b>IO 多路复用</b>（epoll）：一个线程处理多个连接<br>
+      ④ <b>高效的数据结构</b>：跳表、压缩列表等<br>
+      <b>注意</b>：Redis 6.0 引入多线程，但仅用于网络 IO 的读写，命令执行仍然是单线程。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：缓存穿透、击穿、雪崩？解决方案？（必考）</div>
+    <div class="qa-a">
+      <b>缓存穿透</b>（查不存在的数据）：<br>
+      → <b>布隆过滤器</b>拦截不存在的 key<br>
+      → 缓存空值（设置短 TTL）<br><br>
+      <b>缓存击穿</b>（热点 key 过期，大量并发打到 DB）：<br>
+      → <b>互斥锁</b>（SETNX）：只允许一个线程查 DB 并回写<br>
+      → <b>逻辑过期</b>：不设置实际 TTL，value 中存过期时间，异步更新<br><br>
+      <b>缓存雪崩</b>（大量 key 同时过期 / Redis 宕机）：<br>
+      → TTL 加<b>随机值</b>，避免同时过期<br>
+      → <b>多级缓存</b>：本地缓存（Caffeine）+ Redis + DB<br>
+      → Redis <b>高可用</b>：哨兵 / Cluster
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：Redis 持久化方案？</div>
+    <div class="qa-a">
+      <b>RDB（快照）</b>：<br>
+      ① fork 子进程，利用 COW（Copy-On-Write）生成快照<br>
+      ② 保存到 <code>dump.rdb</code><br>
+      ③ 优点：恢复快、文件紧凑。缺点：可能丢失最后一次快照后的数据<br><br>
+      <b>AOF（追加文件）</b>：<br>
+      ① 记录每条写命令到 <code>appendonly.aof</code><br>
+      ② 刷盘策略：always / everysec / no<br>
+      ③ AOF 重写：压缩文件，去除冗余命令<br>
+      ④ 优点：数据更安全。缺点：文件大、恢复慢<br><br>
+      <b>混合持久化</b>（Redis 4.0+）：AOF 重写时前半段是 RDB 格式，后半段是 AOF 增量。兼顾恢复速度和数据安全。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：Redis 分布式锁如何实现？有什么问题？</div>
+    <div class="qa-a">
+      <b>基本实现</b>：<code>SET key value NX EX seconds</code><br>
+      <b>问题</b>：<br>
+      ① 锁过期但业务没执行完 → <b>Redisson 看门狗</b>自动续期<br>
+      ② Redis 主从切换导致锁丢失 → <b>RedLock</b> 算法（多节点加锁，多数成功才算成功，但争议较大）<br>
+      ③ 非持有者释放锁 → value 用 UUID + 线程 ID，释放时用 Lua 脚本保证原子性<br><br>
+      <b>Redisson 优势</b>：自动续期、可重入、支持读写锁、公平锁。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：Redis 集群方案？</div>
+    <div class="qa-a">
+      <b>主从复制</b>：读写分离，主写从读。全量同步（第一次/断太久）+ 增量同步（offset）。<br>
+      <b>哨兵模式（Sentinel）</b>：监控主从节点，主挂了自动故障转移（选举新主）。<br>
+      <b>Cluster 模式</b>（官方推荐）：<br>
+      ① 数据分片：16384 个哈希槽分配到不同节点<br>
+      ② 去中心化：节点间 Gossip 协议通信<br>
+      ③ 自动故障转移<br>
+      ④ <code>key</code> 的槽 = <code>CRC16(key) % 16384</code><br>
+      ⑤ 支持 <code>{hashtag}</code> 保证相关 key 在同一槽（用于 multi-key 操作）
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 八、分布式 ===================== -->
+<div class="card" id="distributed">
+  <h2>八、分布式 · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：CAP 定理和 BASE 理论？</div>
+    <div class="qa-a">
+      <b>CAP</b>：分布式系统最多同时满足两个：<br>
+      ① <b>C（Consistency）</b>一致性：所有节点数据一致<br>
+      ② <b>A（Availability）</b>可用性：每个请求都能得到响应<br>
+      ③ <b>P（Partition tolerance）</b>分区容错：网络分区时系统仍能运行<br>
+      实际 P 必须保证，所以选 CP 或 AP：<br>
+      CP：ZooKeeper、Etcd（保证一致性，可能拒绝服务）<br>
+      AP：Eureka、Nacos（默认 AP，可切换 CP）<br><br>
+      <b>BASE</b>：CAP 的延伸，核心是最终一致性<br>
+      ① BA（Basically Available）基本可用<br>
+      ② S（Soft state）软状态<br>
+      ③ E（Eventually consistent）最终一致性
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：分布式事务方案？</div>
+    <div class="qa-a">
+      ① <b>2PC（两阶段提交）</b>：prepare + commit/rollback。缺点：同步阻塞、单点故障<br>
+      ② <b>3PC</b>：增加 canCommit 阶段 + 超时机制，降低阻塞<br>
+      ③ <b>TCC</b>：Try-Confirm-Cancel，业务层面实现。性能高但侵入性强<br>
+      ④ <b>本地消息表</b>：事务操作 + 写消息到本地表，定时任务发送到 MQ，消费方保证幂等<br>
+      ⑤ <b>Saga</b>：长事务拆成多个本地短事务，每个有补偿操作。失败时反向补偿<br>
+      ⑥ <b>最大努力通知</b>：事务发起方完成本地事务后通知各方，失败重试。适用于对一致性要求低的场景<br><br>
+      <b>Seata</b> 支持 AT、TCC、Saga、XA 四种模式。AT 模式最常用（无侵入）。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：雪花算法（Snowflake）原理？</div>
+    <div class="qa-a">
+      64 位 Long 型 ID = <b>1 位符号</b> + <b>41 位时间戳</b>（毫秒级，约 69 年）+ <b>10 位工作机器 ID</b>（支持 1024 个节点）+ <b>12 位序列号</b>（每毫秒 4096 个 ID）<br>
+      <b>优点</b>：全局唯一、趋势递增、高性能、不依赖数据库<br>
+      <b>问题</b>：时钟回拨会导致 ID 重复。解决方案：等待、记录上次同步时间。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：限流算法有哪些？</div>
+    <div class="qa-a">
+      ① <b>固定窗口</b>：每个时间窗口内允许 N 个请求。缺点：窗口交界处流量翻倍<br>
+      ② <b>滑动窗口</b>：将窗口细分，更平滑。Sentinel 使用<br>
+      ③ <b>漏桶算法</b>：以固定速率处理请求，平滑突发流量。不适合处理突发流量<br>
+      ④ <b>令牌桶算法</b>：以固定速率生成令牌，有令牌才能处理。允许一定程度的突发流量。Guava RateLimiter 使用
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 九、计算机网络 ===================== -->
+<div class="card" id="network">
+  <h2>九、计算机网络 · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：TCP 三次握手？为什么三次？</div>
+    <div class="qa-a">
+      ① 客户端 → SYN（seq=x）→ 服务端<br>
+      ② 服务端 → SYN+ACK（seq=y, ack=x+1）→ 客户端<br>
+      ③ 客户端 → ACK（ack=y+1）→ 服务端<br><br>
+      <b>为什么三次</b>：防止历史连接导致资源浪费。如果两次握手，过期的 SYN 到达服务端，服务端会建立错误连接并分配资源。三次握手客户端可以确认自己的 SYN 是否被正确接收。<br>
+      <b>为什么不能两次</b>：无法确认客户端的接收能力，可能导致单方建立连接。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：TCP 四次挥手？为什么 TIME_WAIT 持续 2MSL？</div>
+    <div class="qa-a">
+      ① 客户端 → FIN → 服务端（客户端进入 FIN_WAIT_1）<br>
+      ② 服务端 → ACK（服务端 CLOSE_WAIT，客户端 FIN_WAIT_2）<br>
+      ③ 服务端 → FIN（服务端 LAST_ACK）<br>
+      ④ 客户端 → ACK（客户端 TIME_WAIT，等待 2MSL）<br><br>
+      <b>为什么四次</b>：TCP 全双工，每个方向需要单独关闭。服务端收到 FIN 可能还有数据要发送。<br>
+      <b>为什么 TIME_WAIT 持续 2MSL</b>（MSL = Maximum Segment Lifetime，约 60s）：<br>
+      ① 确保最后一个 ACK 能到达服务端（如果丢了，服务端重发 FIN）<br>
+      ② 让网络中该连接的旧报文消失，避免新连接收到旧数据
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：HTTPS 握手过程？</div>
+    <div class="qa-a">
+      ① 客户端发送支持的加密算法列表 + 随机数 ClientRandom<br>
+      ② 服务端选择加密算法 + 返回证书 + 随机数 ServerRandom<br>
+      ③ 客户端验证证书（CA 签名）→ 生成预主密钥 Pre-Master → 用服务端公钥加密发送<br>
+      ④ 服务端用私钥解密得到 Pre-Master<br>
+      ⑤ 双方用 ClientRandom + ServerRandom + Pre-Master 生成<b>会话密钥</b><br>
+      ⑥ 后续通信使用会话密钥（对称加密）<br><br>
+      <b>混合加密</b>：非对称加密交换密钥 + 对称加密传输数据。兼顾安全和性能。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：HTTP 1.0 / 1.1 / 2.0 / 3.0 区别？</div>
+    <div class="qa-a">
+      <b>HTTP 1.0</b>：每次请求都新建 TCP 连接<br>
+      <b>HTTP 1.1</b>：持久连接（keep-alive）、管道化（队头阻塞）、Host 头（虚拟主机）、分块传输<br>
+      <b>HTTP 2.0</b>：二进制分帧、多路复用（一个 TCP 上并行多个请求）、头部压缩（HPACK）、服务器推送<br>
+      <b>HTTP 3.0</b>：基于 QUIC（UDP）、解决 TCP 队头阻塞、0-RTT 连接建立、内置加密
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：从输入 URL 到页面展示的全过程？（综合高频题）</div>
+    <div class="qa-a">
+      ① <b>DNS 解析</b>：域名 → IP（浏览器缓存 → 系统缓存 → 路由器 → ISP DNS → 根域名服务器）<br>
+      ② <b>TCP 连接</b>：三次握手<br>
+      ③ <b>TLS 握手</b>（HTTPS）：协商加密算法、交换证书、生成会话密钥<br>
+      ④ <b>发送 HTTP 请求</b>：GET/POST，包含请求头、Cookie 等<br>
+      ⑤ <b>服务器处理</b>：负载均衡 → Web 服务器 → 应用服务器 → 数据库<br>
+      ⑥ <b>返回响应</b>：HTML、CSS、JS、图片等<br>
+      ⑦ <b>浏览器渲染</b>：<br>
+      &nbsp;&nbsp;- 解析 HTML → DOM 树<br>
+      &nbsp;&nbsp;- 解析 CSS → CSSOM 树<br>
+      &nbsp;&nbsp;- 合并 DOM + CSSOM → Render 树<br>
+      &nbsp;&nbsp;- Layout（布局）→ 计算元素位置和大小<br>
+      &nbsp;&nbsp;- Paint（绘制）→ 像素绘制<br>
+      &nbsp;&nbsp;- Composite（合成）→ 分层合成最终画面<br>
+      ⑧ <b>TCP 四次挥手</b>（连接关闭）
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 十、消息队列 ===================== -->
+<div class="card" id="mq">
+  <h2>十、消息队列 · 高频知识点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：为什么用 MQ？有什么缺点？</div>
+    <div class="qa-a">
+      <b>优点</b>：<br>
+      ① <b>解耦</b>：生产者消费者不直接依赖<br>
+      ② <b>异步</b>：耗时操作异步处理，减少响应时间<br>
+      ③ <b>削峰</b>：突发流量先入队列，慢慢处理<br><br>
+      <b>缺点</b>：<br>
+      ① 系统复杂度增加（一致性、重复消费、顺序等问题）<br>
+      ② 系统可用性降低（MQ 挂了怎么办）<br>
+      ③ 数据一致性问题
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：Kafka 架构？为什么快？</div>
+    <div class="qa-a">
+      <b>架构</b>：<br>
+      ① <b>Broker</b>：Kafka 服务器<br>
+      ② <b>Topic</b>：消息主题<br>
+      ③ <b>Partition</b>：分区，一个 Topic 多个 Partition 分布在不同 Broker<br>
+      ④ <b>Producer</b>：生产者<br>
+      ⑤ <b>Consumer</b>：消费者，属于某个 Consumer Group<br>
+      ⑥ <b>Offset</b>：消费者在 Partition 中的消费位置<br><br>
+      <b>为什么快</b>：<br>
+      ① <b>顺序写磁盘</b>：追加写入，比随机写快几个数量级<br>
+      ② <b>零拷贝</b>（sendfile）：数据从磁盘直接到网卡，不经过用户空间<br>
+      ③ <b>页缓存</b>（PageCache）：利用 OS 缓存<br>
+      ④ <b>批量发送</b> + 压缩<br>
+      ⑤ Partition 并行处理
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：如何保证消息不丢失？</div>
+    <div class="qa-a">
+      <b>生产者端</b>：<br>
+      ① 开启确认机制：Kafka <code>acks=all</code>；RabbitMQ 开启 publisher confirm<br>
+      ② 发送失败重试<br><br>
+      <b>Broker 端</b>：<br>
+      ① Kafka：<code>replication.factor >= 3</code>，<code>min.insync.replicas >= 2</code><br>
+      ② RabbitMQ：镜像队列 / 仲裁队列<br><br>
+      <b>消费者端</b>：<br>
+      ① 关闭自动提交 offset<br>
+      ② 处理完业务后再手动提交
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：如何保证消息不重复消费（幂等性）？</div>
+    <div class="qa-a">
+      ① <b>唯一 ID</b>：每条消息生成唯一 msgId<br>
+      ② <b>数据库唯一约束</b>：msgId 作为唯一索引，插入成功才算消费成功<br>
+      ③ <b>Redis SETNX</b>：用 msgId 做 key，消费前先 SETNX<br>
+      ④ <b>乐观锁</b>：更新操作带上版本号<br>
+      ⑤ <b>业务幂等</b>：比如扣款，用 <code>余额 = 余额 - 金额</code> 而不是 <code>余额 = 原值</code>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 十一、AI + 大模型 ===================== -->
+<div class="card" id="ai">
+  <h2>十一、AI + 大模型 · 2026 新增考点</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：什么是 LLM？基本概念？</div>
+    <div class="qa-a">
+      <b>LLM（Large Language Model）</b>大语言模型，基于 Transformer 架构，通过海量文本预训练的神经网络。<br>
+      <b>核心概念</b>：<br>
+      ① <b>Token</b>：文本被切分的最小单位（可能是词、子词或字符）<br>
+      ② <b>Prompt</b>：输入给模型的提示文本<br>
+      ③ <b>Temperature</b>：控制输出随机性，0 = 确定性，1 = 随机性<br>
+      ④ <b>Top-P</b>：从概率前 P% 的 token 中采样<br>
+      ⑤ <b>Context Window</b>：模型能处理的最大 token 数
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：什么是 RAG？架构是怎样的？</div>
+    <div class="qa-a">
+      <b>RAG（Retrieval-Augmented Generation）</b>检索增强生成，解决 LLM 知识过期、幻觉问题。<br>
+      <b>架构</b>：<br>
+      ① <b>离线索引</b>：文档 → 切块（Chunk）→ Embedding 模型 → 向量数据库<br>
+      ② <b>在线检索</b>：用户提问 → 向量化 → 在向量库中检索 Top-K 相关文档<br>
+      ③ <b>增强生成</b>：将检索到的文档 + 用户问题组装成 Prompt → LLM 生成答案<br><br>
+      <b>Java 实现</b>：Spring AI + Milvus / Elasticsearch 8.x
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：什么是 AI Agent？和 RAG 有什么区别？</div>
+    <div class="qa-a">
+      <b>AI Agent</b>智能体 = LLM + 工具使用 + 规划 + 记忆。<br>
+      <b>ReAct 模式</b>：Reasoning（推理）→ Action（行动）→ Observation（观察）循环。<br>
+      <b>和 RAG 区别</b>：<br>
+      ① RAG 是被动检索 + 生成<br>
+      ② Agent 可以主动规划、调用工具、多步推理<br>
+      ③ Agent 可以包含 RAG 作为其工具之一
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q4：什么是 Function Calling / Tool Use？</div>
+    <div class="qa-a">
+      LLM 本身只能生成文本，Function Calling 让 LLM 能够<b>调用外部工具</b>（API、数据库、搜索引擎等）。<br>
+      <b>流程</b>：<br>
+      ① 开发者定义可用工具（函数签名、参数描述）<br>
+      ② LLM 根据用户意图决定调用哪个工具<br>
+      ③ LLM 返回工具名 + 参数<br>
+      ④ 开发者执行工具，将结果返回给 LLM<br>
+      ⑤ LLM 基于工具结果生成最终回答
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q5：什么是 MCP 协议？</div>
+    <div class="qa-a">
+      <b>MCP（Model Context Protocol）</b>是 Anthropic 提出的开放标准，让 LLM 以统一方式连接外部数据源和工具。<br>
+      <b>架构</b>：Host（宿主应用）→ Client（协议客户端）→ Server（工具/数据提供方）<br>
+      <b>核心能力</b>：Tools（工具）、Resources（资源）、Prompts（提示模板）、Sampling（采样）<br>
+      <b>Java 生态</b>：Spring AI 已支持 MCP，可以直接集成各种 MCP Server。
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q6：Prompt Engineering 有哪些技巧？</div>
+    <div class="qa-a">
+      ① <b>角色设定</b>："你是一位资深 Java 工程师..."<br>
+      ② <b>Few-shot</b>：提供几个输入-输出示例<br>
+      ③ <b>CoT（Chain of Thought）</b>：让模型"一步步思考"<br>
+      ④ <b>约束条件</b>：明确输出格式、长度限制<br>
+      ⑤ <b>分隔符</b>：用 XML 标签或 Markdown 清晰分隔不同部分<br>
+      ⑥ <b>自我一致性</b>：多次采样取多数投票结果
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 十二、系统设计 ===================== -->
+<div class="card" id="design">
+  <h2>十二、系统设计 · 实战题</h2>
+
+  <div class="qa">
+    <div class="qa-q">Q1：如何设计一个秒杀系统？</div>
+    <div class="qa-a">
+      <b>核心目标</b>：高并发、防超卖、防刷<br>
+      <b>方案</b>：<br>
+      ① <b>前端</b>：按钮置灰、验证码、静态资源 CDN<br>
+      ② <b>网关层</b>：限流（令牌桶）、IP 黑名单、用户鉴权<br>
+      ③ <b>服务层</b>：<br>
+      &nbsp;&nbsp;- Redis 预扣库存：<code>DECR</code> 操作，库存 &lt; 0 则返回失败<br>
+      &nbsp;&nbsp;- 发送 MQ 消息异步下单<br>
+      ④ <b>下单层</b>：消费者从 MQ 取消息 → 数据库扣库存（乐观锁 / 行锁）→ 创建订单<br>
+      ⑤ <b>订单超时</b>：延迟队列取消未支付订单，释放库存<br><br>
+      <b>防超卖</b>：Redis 原子操作 + 数据库乐观锁双重保障
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q2：如何设计一个短链接系统？</div>
+    <div class="qa-a">
+      <b>需求</b>：长链接 → 短链接（如 bit.ly/abc123），访问短链跳转长链<br>
+      <b>方案</b>：<br>
+      ① <b>生成短码</b>：<br>
+      &nbsp;&nbsp;- 自增 ID + Base62 编码（简单，但可预测）<br>
+      &nbsp;&nbsp;- 雪花 ID + Base62（唯一但不连续）<br>
+      &nbsp;&nbsp;- MD5 + 取前 6 位 + 冲突处理<br>
+      ② <b>存储</b>：短码 → 长链的 KV 存储（MySQL / Redis）<br>
+      ③ <b>跳转</b>：301（永久）或 302（临时，可统计访问次数）<br>
+      ④ <b>缓存</b>：热门短链放 Redis，减少 DB 查询
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q3：如何设计一个 Feed 流系统？</div>
+    <div class="qa-a">
+      <b>两种模式</b>：<br>
+      ① <b>推模式（写扩散）</b>：用户发布 → 推到所有粉丝的收件箱。写入量大，但读取快。适合大 V 少的场景<br>
+      ② <b>拉模式（读扩散）</b>：读取时聚合关注的人的时间线。读取量大，但写入简单。适合关注少的场景<br>
+      ③ <b>推拉结合</b>：普通用户推模式，大 V 拉模式（粉丝太多不推）<br><br>
+      <b>存储</b>：Timeline 数据放 Redis（ZSet，score 为时间戳），历史数据放 HBase / Cassandra
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 十三、HR 面 ===================== -->
+<div class="card" id="hr">
+  <h2>十三、HR 面 & 软技能</h2>
+
+  <h3>高频问题 & 回答思路</h3>
+
+  <div class="qa">
+    <div class="qa-q">Q：为什么从上一家公司离职？</div>
+    <div class="qa-a">
+      ✅ 正面回答：寻求更大的技术挑战、想深耕 XX 领域、公司业务调整<br>
+      ❌ 不要说：薪资太低、和领导关系不好、加班太多
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q：你的优缺点？</div>
+    <div class="qa-a">
+      <b>优点</b>：结合岗位需求，用具体事例证明（如"学习能力强"→ 一周掌握了 XX 技术解决了 XX 问题）<br>
+      <b>缺点</b>：说真实的、但可改进的缺点 + 正在采取的措施（如"有时候太追求细节，正在学习在质量和效率之间平衡"）
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q：你的职业规划？</div>
+    <div class="qa-a">
+      短期（1-2 年）：深耕 Java 后端 + 大模型应用开发，成为团队技术骨干<br>
+      中期（3-5 年）：成长为技术专家 / 架构师，负责核心系统设计<br>
+      长期：技术 + 业务双驱动，为产品创造更大价值
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q：期望薪资？</div>
+    <div class="qa-a">
+      ① 提前调研市场价（脉脉、Boss 直聘、牛客）<br>
+      ② 给一个合理范围，而不是固定数字<br>
+      ③ "根据我的经验和能力，期望在 XX-XX 之间，当然更看重平台和发展空间"
+    </div>
+  </div>
+
+  <div class="qa">
+    <div class="qa-q">Q：你有什么想问我的？</div>
+    <div class="qa-a">
+      ✅ 问团队技术栈、业务方向、新人培养机制、项目挑战<br>
+      ❌ 不要问：加班多不多、福利好不好（HR 主动会说）
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 十四、自我介绍 ===================== -->
+<div class="card" id="selfintro">
+  <h2>十四、自我介绍模板</h2>
+
+  <div class="tip">
+    <b>💡 控制在 2 分钟内，结构：基本信息 + 技术栈 + 亮点项目 + 为什么应聘</b>
+  </div>
+
+  <h3>模板</h3>
+  <p>
+    面试官好，我叫 XXX，X 年 Java 开发经验。目前 / 最近在 XX 公司，主要负责 XX 业务。<br><br>
+
+    技术上，我熟悉 Java 基础、并发、JVM，熟练使用 Spring Boot、MyBatis、MySQL、Redis、Kafka 等。最近也在关注 AI + Java 方向，用 Spring AI 做过 RAG 相关的项目。<br><br>
+
+    我比较有亮点的项目是 XX（一句话概括）：<br>
+    - 背景/挑战是什么<br>
+    - 我负责了什么、用了什么技术<br>
+    - 取得了什么成果（量化：性能提升 X 倍、QPS 从 X 到 X、节省了 X 成本）<br><br>
+
+    我非常认可贵公司的 XX（产品/技术方向），希望能有机会加入，和团队一起做出有价值的产品。<br><br>
+
+    以上是我的自我介绍，谢谢。
+  </p>
+
+  <div class="note">
+    <b>📌 注意事项：</b><br>
+    ① 不要流水账念简历<br>
+    ② 突出 1-2 个亮点项目，引导面试官问你准备好的方向<br>
+    ③ 数据量化成果（QPS、响应时间、业务指标）<br>
+    ④ 自信、自然，不要背诵感太强
+  </div>
+</div>
+
+<footer>
+  本手册内容综合整理自 JavaGuide、小林 coding、牛客网、知乎、CSDN、掘金、小红书面经分享等。<br>
+  知识点持续更新中 · 复习完本手册 + LeetCode Hot 100 + 项目深度复盘 = 从容面对大厂面试 💪
+</footer>
+
+</div>
+</body>
+</html>
