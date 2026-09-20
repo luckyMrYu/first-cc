@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 视频生成大模型总结:Seedance 系列与主要竞品</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1f2328;
+    --muted: #57606a;
+    --line: #d8dee4;
+    --accent: #0969da;
+    --ok: #1a7f37;
+    --warn: #9a6700;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 64px; }
+  header h1 { font-size: 28px; margin: 0 0 8px; }
+  header .meta { color: var(--muted); font-size: 14px; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; color: #fff; margin-right: 6px; vertical-align: middle;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 20px 24px; margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  h2 { font-size: 20px; margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  h3 { font-size: 16px; margin: 16px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #eef2f6; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  .yes { color: var(--ok); font-weight: 600; }
+  .no  { color: #cf222e; font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .vendor { font-weight: 700; }
+  footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .note {
+    background: #fff8e5; border: 1px solid #d4a72c66; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>2026 视频生成大模型总结:Seedance 系列与主要竞品</h1>
+  <div class="meta">数据整理时间:2026 年 9 月 20 日 · 榜单名次与效果评价来自公开 Arena、媒体横评与券商测评,不同来源口径有差异</div>
+</header>
+
+<div class="card">
+  <h2>一、结论速览</h2>
+  <ul>
+    <li><span class="vendor">主角</span>:<b>Seedance 1.0 pro</b>(字节跳动,即梦平台底座)2025 年 6 月随 1.0 系列发布,上线即登顶 Artificial Analysis 文生视频、图生视频双榜;截至 2026-09 Arena 文生视频 Elo 约 1190,仍居头部,但同家族已被 <b>Seedance 2.0 / 2.5</b> 取代成为主推。</li>
+    <li><span class="vendor">格局</span>:2026 年视频生成第一梯队 = <b>Seedance 2.x(即梦)、可灵 3.0、Veo 3.1、Sora 2/Pro、海螺 2.3</b>,加上开源代表 <b>Wan 2.6</b> 与特色款 <b>PixVerse V6、Vidu Q3</b>。</li>
+    <li><span class="vendor">效果共识</span>:<b>叙事/分镜/一致性/性价比 → Seedance;电影质感/4K/光影 → 可灵;写实 + 原生音频 → Veo 3.1</b>;Sora 2 国内实测声量下滑。</li>
+    <li><span class="vendor">价格</span>:同为 5 秒 720P,可灵约 ¥4,Seedance 约 ¥2.3;市场单秒成本区间 ¥0.18–¥1.38(腾讯新闻 7 款实测)。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>二、总览对比表</h2>
+  <table>
+    <tr>
+      <th>厂商 / 系列</th><th>代表模型(2026)</th><th>开源</th><th>原生音频</th><th>输入模态</th><th>规格亮点</th><th>榜单/评测地位</th>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#00b06b">字节</span>Seedance(即梦)</td>
+      <td>Seedance 1.0 / <b>1.0 pro</b>、1.5 pro、<b>2.0、2.5</b></td>
+      <td>否(1.0 部分开源)</td>
+      <td class="yes">✅(1.5 起)</td>
+      <td class="yes">✅ 图/文/音/视混合参考(2.0)</td>
+      <td>1080p;2.5 单次 30 秒一镜到底;多镜头分镜自动调度</td>
+      <td>发布即登顶 AA 文/图生视频双榜;2.0 音频组 Elo≈1218;1.0 pro Arena Elo 1190±11(2026-09)</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#fe3333">快手</span>可灵 Kling</td>
+      <td>Kling 2.6、<b>3.0 / 3.0 Omni</b></td>
+      <td>否</td>
+      <td class="yes">✅ 音画同步</td>
+      <td>图/文/首尾帧/主体参考</td>
+      <td><b>4K</b>、单段最长 15 秒、精细运镜控制</td>
+      <td>知乎横评称其「登顶全球榜单」;专业影视向口碑第一</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#4285f4">Google</span>Veo</td>
+      <td>Veo 3.1(Standard/Fast)</td>
+      <td>否</td>
+      <td class="yes">✅ 48kHz 原生音频</td>
+      <td>图/文/参考图</td>
+      <td>4K 输出、氛围与光影写实标杆</td>
+      <td>aimlapi 2026 综合质量第一;「写实+音频」组合最强</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#10a37f">OpenAI</span>Sora</td>
+      <td>Sora 2、Sora 2 Pro</td>
+      <td>否</td>
+      <td class="yes">✅</td>
+      <td>图/文</td>
+      <td>物理规律模拟、带对白</td>
+      <td>极客公园八款实测结论:「Sora 确实不太行了」——声量下滑,特效创意仍可用</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#7c3aed">MiniMax</span>海螺 Hailuo</td>
+      <td>Hailuo 02、2.3</td>
+      <td>部分(M2 系)</td>
+      <td class="yes">✅(2.x)</td>
+      <td>图/文</td>
+      <td>人物动作自然度好,性价比档</td>
+      <td>国内第一梯队(钛媒体);极客公园:与可灵并列「最自然」</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#ff6a00">阿里</span>通义万相 Wan</td>
+      <td>Wan 2.5、<b>2.6</b></td>
+      <td class="yes">✅ 开源权重</td>
+      <td class="yes">✅(2.5 起)</td>
+      <td>图/文/视频编辑</td>
+      <td>可自部署的开源首选,社区生态大</td>
+      <td>higgsfield 榜开源位第一;自部署场景标杆</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#e11d74">爱诗</span>PixVerse</td>
+      <td>PixVerse V6</td>
+      <td>否</td>
+      <td class="yes">✅ 音画协同</td>
+      <td>图/文/特效模板</td>
+      <td>运镜连贯、角色连续性、特效玩法多</td>
+      <td>创作者向特色款;平台同时接入售卖 Seedance 2.0/2.5</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#0ea5e9">生数</span>Vidu</td>
+      <td>Vidu Q2、Q3</td>
+      <td>否</td>
+      <td>部分</td>
+      <td>图/文/主体参考</td>
+      <td>动漫/一致性角色见长</td>
+      <td>国内第一梯队(钛媒体);动画风格特色</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#6b7280">其他</span>Runway / Luma / Pika / Higgsfield</td>
+      <td>Gen-4、Dream Machine 等</td>
+      <td>否</td>
+      <td>部分</td>
+      <td>图/文</td>
+      <td>剪辑工作流集成好</td>
+      <td>欧美创意工具向,API 生态成熟但模型本体渐居第二梯队</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>三、生成效果对比(各家强弱项)</h2>
+  <table>
+    <tr><th>模型</th><th>效果强项(实测共识)</th><th>已知短板</th></tr>
+    <tr>
+      <td><b>Seedance 1.0 pro / 2.0</b></td>
+      <td>多镜头叙事一致性强,「像导演一样自动分镜调度」(36氪);图文音视混合参考、主体一致性空前稳固;一次生成成功率高、成本低(什么笛 128 位创作者实测);音画同步精准</td>
+      <td>单帧「电影感」略平(早期 ofweek 评测:表现力不及可灵);1.0 pro 本身无音频,需升级到 1.5/2.0</td>
+    </tr>
+    <tr>
+      <td><b>可灵 3.0</b></td>
+      <td>影像质感第一档:打光、皮肤细节、精细表情、奔跑动态自然;4K + 15 秒原生音画同步,专业交付能力强(东吴证券:偏「专业级内容生产」)</td>
+      <td>风格有时「用力过猛」;价格高于 Seedance(5 秒 720P 约 ¥4 vs ¥2.3);叙事调度弱于 Seedance</td>
+    </tr>
+    <tr>
+      <td><b>Veo 3.1</b></td>
+      <td>照片级写实与户外/氛围场景标杆,48kHz 原生音频;物理与光影连贯(aimlapi 综合质量第一)</td>
+      <td>单价偏高;国内访问与合规受限;长叙事分镜非其主打</td>
+    </tr>
+    <tr>
+      <td><b>Sora 2 / Pro</b></td>
+      <td>物理规律、大场面特效、对白口型有创意</td>
+      <td>国内社区实测评价明显下滑(极客公园「确实不太行了」);可控性与一致性不如国产双雄</td>
+    </tr>
+    <tr>
+      <td><b>海螺 2.3</b></td>
+      <td>人物动作自然、拟真表情,第一梯队(钛媒体);价格友好</td>
+      <td>复杂多镜头叙事与专业规格(4K/15s)不如可灵</td>
+    </tr>
+    <tr>
+      <td><b>Wan 2.6(开源)</b></td>
+      <td>可私有化部署、可微调,社区生态与衍生工具最多;质量逼近闭源中坚</td>
+      <td>峰值效果与商用稳定性不如头部闭源;需自备算力</td>
+    </tr>
+    <tr>
+      <td><b>PixVerse V6</b></td>
+      <td>镜头运动连贯、角色连续性、短叙事与特效模板玩法(官方评测:音画协同类提示价值最明显)</td>
+      <td>复杂动作仍需多次「抽卡」;官方自己也承认非一次出片型</td>
+    </tr>
+    <tr>
+      <td><b>Vidu Q3</b></td>
+      <td>动漫/卡通风格与角色一致性特色(极客公园:「Vidu 有特点」)</td>
+      <td>写实电影感非其赛道</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>四、价格对比(官方 API 标价,2026-09 快照)</h2>
+
+  <h3>4.1 统一口径:生成一段视频要花多少钱</h3>
+  <table>
+    <tr><th>模型</th><th>计费方式</th><th>单价</th><th>一条典型成片实付</th><th>含音频</th><th>备注</th></tr>
+    <tr>
+      <td><b>Seedance 1.0 pro</b></td>
+      <td>按视频 token</td>
+      <td>火山方舟 ¥15/百万 token(¥0.015/千)</td>
+      <td><b>5 秒 1080P ≈ ¥3.67(约 $0.51)</b>;1 万元预算 ≈ 2725 条</td>
+      <td class="no">❌(1.0 代)</td>
+      <td>fal.ai 同规格 $0.74/条;Pro Fast $0.245;Lite 5s 720p $0.18</td>
+    </tr>
+    <tr>
+      <td>Seedance 2.0(fal 渠道)</td>
+      <td>按秒</td>
+      <td>1080p $0.682/s;720p $0.303/s;Fast 档约 $0.09/s</td>
+      <td>5 秒 1080p ≈ $3.4;Fast 档 5 秒 ≈ $0.45</td>
+      <td class="yes">✅</td>
+      <td>火山方舟 2.0/2.5 资源包:480p 2–15 秒 ¥2.53–5.62/个</td>
+    </tr>
+    <tr>
+      <td><b>可灵 Kling 2.5 Turbo</b></td>
+      <td>官方按秒;第三方按条</td>
+      <td>官方 $0.112/s(720p)/ $0.14/s(1080p)</td>
+      <td>8 秒 720p ≈ $0.90;第三方 5 秒 ≈ $0.21–0.33;国内 C 端 5s 720p ≈ ¥4</td>
+      <td class="yes">✅(3.0)</td>
+      <td>Kling 3.0/O3 起价 $0.075/s</td>
+    </tr>
+    <tr>
+      <td><b>Veo 3.1</b></td>
+      <td>按秒,分三档</td>
+      <td>Standard $0.40/s(1080p+音频)、4K+音频 $0.60/s、无声 $0.20/s;Fast $0.15/s;Lite $0.03–0.05/s</td>
+      <td>8 秒 Standard ≈ <b>$3.20</b>(最贵档);8 秒 Fast ≈ $1.20</td>
+      <td class="yes">✅ 48kHz</td>
+      <td>API 价 vs Flow 端内 $0.20/条差距大,曾被集中吐槽</td>
+    </tr>
+    <tr>
+      <td><b>Sora 2 / Pro</b></td>
+      <td>按秒</td>
+      <td>标准 720p $0.10/s(Batch $0.05);Pro $0.30–0.70/s 随分辨率</td>
+      <td>8 秒标准 ≈ $0.80;8 秒 Pro 1080p ≈ $4.0–5.6</td>
+      <td class="yes">✅</td>
+      <td>有来源提及 Sora 2 或将停服迁移,接入前核对 OpenAI 文档</td>
+    </tr>
+    <tr>
+      <td><b>海螺 Hailuo 02 / 2.3</b></td>
+      <td>按秒/按条(渠道不一)</td>
+      <td>fal 768p $0.045/s、512p $0.017/s;2.3 官方约 $0.28/6s(Fast $0.19/6s)</td>
+      <td>8 秒 768p ≈ <b>$0.36</b>(主流里最便宜档)</td>
+      <td class="yes">✅(2.x)</td>
+      <td>OpenRouter 2.3:$0.0817/s</td>
+    </tr>
+    <tr>
+      <td>Wan 2.6(开源)</td>
+      <td>自部署=算力成本</td>
+      <td>无统一标价;托管 API 各家差异大</td>
+      <td>取决于租卡价格与并发</td>
+      <td>部分</td>
+      <td>批量场景自有卡成本最低</td>
+    </tr>
+    <tr>
+      <td>PixVerse V6 / Vidu Q3</td>
+      <td>按条/积分制</td>
+      <td>见官网与 fal.ai pricing 页</td>
+      <td>—(无统一横评口径,暂不列以免失真)</td>
+      <td>部分</td>
+      <td>C 端订阅制为主</td>
+    </tr>
+  </table>
+  <p class="muted">注:同模型按「分辨率 × 有无音频 × 计费单位(秒/条/token)」最多可差 10 倍(如 Veo Lite $0.03/s vs 4K+音频 $0.60/s);官方 API 与聚合平台(fal / Replicate / OpenRouter / Kie / PiAPI / 火山方舟 / 百炼)价格常明显背离,下单前双源核对。</p>
+
+  <h3>4.2 Seedance 1.0 pro 多渠道价格明细</h3>
+  <table>
+    <tr><th>渠道</th><th>价格</th><th>说明</th></tr>
+    <tr><td>火山方舟(中国)</td><td>¥3.67 / 5s 1080p</td><td>0.015 元/千 token;发布时主打「全网最低价」,比竞品低约七成</td></tr>
+    <tr><td>BytePlus(火山国际版)</td><td>$2.50 / 百万 token</td><td>新账号赠 200 万 token</td></tr>
+    <tr><td>fal.ai</td><td>$0.74 / 5s 1080p</td><td>$3.0/百万视频 token;较火山源头贵约 45%</td></tr>
+    <tr><td>Together AI</td><td>$0.57 / 条</td><td>按条计费</td></tr>
+    <tr><td>即梦 AI(C 端)</td><td>高级会员年卡 ¥2599</td><td>每月 15000 积分,首年有四折;免 API 运维</td></tr>
+  </table>
+
+  <h3>4.3 市场锚点</h3>
+  <ul>
+    <li>腾讯新闻实测 7 款主流工具:单秒成本 <b>¥0.18 – ¥1.38</b>;5 秒 720P 横评:可灵约 ¥4 vs Seedance 约 ¥2.3。</li>
+    <li>2025–2026 视频 API 价格整体持续下行,低价档(Seedance Fast / 海螺 / Veo Lite)已把「一次抽卡」打到 $0.2 以下。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>五、实战测算:10 分钟/集 × 10 集的 AI 短剧要花多少钱</h2>
+  <ul>
+    <li><b>需求假设</b>:每集成片 10 分钟(600 秒),共 10 集 = <b>6000 秒成片</b>。</li>
+    <li><b>抽卡系数</b>:AI 视频无法一次全可用,按 Seedance 口碑较好的 <b>1:3</b> 估算 → 实际需生成 <b>约 18000 秒 ≈ 1800 条 10 秒短片</b>(保守按 1:5 预算则翻至 30000 秒)。</li>
+    <li><b>计费口径</b>:Veo/Sora 等按生成秒数计费,<b>废片同样收钱</b>;下表均为 1080p、含音频对白的 API 价。</li>
+  </ul>
+  <table>
+    <tr><th>方案</th><th>每秒成本</th><th>每集(1800 秒生成量)</th><th>10 集总花费</th><th>短剧适配度</th></tr>
+    <tr>
+      <td><b>Seedance 2.0/2.5(Fast 档)—— 首选</b></td>
+      <td>≈$0.09–0.10(¥0.65–0.7)</td>
+      <td><b>≈¥1,200–1,300</b></td>
+      <td><b>≈¥1.2–1.3 万</b></td>
+      <td>⭐⭐⭐⭐⭐ 自动分镜 + 角色参考一致性 + 原生对白音画同步,2.5 单次 30 秒一镜到底可再降镜位数量</td>
+    </tr>
+    <tr>
+      <td>海螺 02/2.3(768p,fal)</td>
+      <td>≈$0.045(¥0.32)</td>
+      <td>≈¥580</td>
+      <td>≈¥5,800</td>
+      <td>⭐⭐⭐ 极限省钱备选,多镜头叙事较弱</td>
+    </tr>
+    <tr>
+      <td>可灵 3.0(720p 起价 → 1080p 上浮)</td>
+      <td>$0.075–0.30</td>
+      <td>¥700–2,800</td>
+      <td>¥0.7–2.8 万</td>
+      <td>⭐⭐⭐⭐ 电影质感最强,适合每集片头/关键情感镜头单抽几条</td>
+    </tr>
+    <tr>
+      <td>Veo 3.1 Fast</td>
+      <td>≈$0.15(¥1.05)</td>
+      <td>≈¥1,900</td>
+      <td>≈¥1.9 万</td>
+      <td>⭐⭐ 单次 8 秒碎片,长叙事拼接成本高</td>
+    </tr>
+    <tr>
+      <td>Veo 3.1 Standard</td>
+      <td>≈$0.40(¥2.8)</td>
+      <td>≈¥5,100</td>
+      <td>≈¥5.1 万</td>
+      <td>⭐ 不划算</td>
+    </tr>
+    <tr>
+      <td>Sora 2(标准档)</td>
+      <td>≈$0.10</td>
+      <td>≈¥1,300</td>
+      <td>≈¥1.3 万</td>
+      <td>⭐⭐ 跨镜头一致性弱 + 停服迁移传闻,不建议押注</td>
+    </tr>
+  </table>
+
+  <h3>推荐打法</h3>
+  <ul>
+    <li><b>主力选 Seedance 2.0/2.5</b>(即梦/火山方舟渠道):「讲故事」是它相对可灵的差异化强项——自动分镜调度、图/音/视混合参考锁角色、原生对白,正对短剧刚需。</li>
+    <li><b>省钱组合技 ①:C 端会员打底</b>——即梦高级会员年卡 ¥2,599(每月 15000 积分);按典型积分消耗粗算,1800 条约需 3.6–5.4 万积分,<b>年卡额度大概率覆盖大半,总成本可能压到 ¥3,000–5,000</b>。<span class="no">⚠️ 积分为估算口径,先用一条样片在 App 内核实实际消耗再上量。</span></li>
+    <li><b>省钱组合技 ②:混合出图</b>——日常镜头 Seedance,每集 2–3 个高光镜头用可灵 3.0 单抽(每集追加 ¥100–300),整体观感上一档。</li>
+  </ul>
+
+  <h3>落地提醒</h3>
+  <ul>
+    <li><b>先做试点</b>:拿第一集最难的 30 秒(多人对话 + 情绪戏)实测,预算 ¥100–200,验证成片率与角色一致性后再全量。</li>
+    <li>生成之外的隐性成本:剪辑、超分补帧(Topaz/开源链)、配乐音效、返工工时,通常占总工期 30% 以上;剧本/分镜用语言模型几乎免费。</li>
+    <li><b>行业现实</b>:目前商业 AI 短剧单集多为 1–3 分钟,10 分钟纯 AI 长叙事仍是硬骨头(一致性疲劳、口型返工)。把成片率按 1:3 与 1:5 各做一版预算,上限也就翻到约 ¥2 万。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>六、分家族详细说明</h2>
+
+  <h3><span class="tag" style="background:#00b06b">字节跳动</span>Seedance 系列(即梦 / 豆包底座)—— 本次主角</h3>
+  <ul>
+    <li><b>版本时间线</b>:Seedance 1.0(2025-06,技术报告 arXiv:2506.09113)→ <b>1.0 pro / 1.0 lite</b>(Pro 为高质量档)→ 1.5 pro(2025-12,加入原生音频)→ <b>2.0</b>(2026-02-07 正式发布,「导演级」,图文音视四维混合输入 + 自动分镜)→ <b>2.5</b>(单次生成 15 秒 → <b>30 秒一镜到底</b>,柔性参考)。</li>
+    <li><b>Seedance 1.0 pro 能力画像</b>:文本 + 图片双输入的多镜头(long-shot)视频生成;1080p、强运动稳定性、语义理解与提示词遵循是当时突破点;发布即登 Artificial Analysis 文生视频与图生视频双榜榜首;截至 2026-09-04 在 arena.ai 文生视频榜 Elo ≈ 1190±11(约 1.2 万样本),仍属头部,但平台主推已切换至 2.x。</li>
+    <li><b>效果口碑</b>:券商与媒体横评一致认为其强在「帮用户表达一个故事」——叙事、分镜调度、一致性、成功率、性价比;弱项是单帧电影质感略平于可灵。</li>
+    <li><b>渠道</b>:即梦 AI、豆包、火山方舟 API,甚至竞品平台 PixVerse 也接入售卖 Seedance 2.0/2.5。</li>
+    <li><b>辟谣提示</b>:2026 年中流传「Seedance 2.1 发布、效果提升 20%」,字节已向媒体确认为<b>假消息</b>(DoNews)。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#fe3333">快手</span>可灵 Kling</h3>
+  <ul>
+    <li>3.0 / 3.0 Omni:<b>4K、15 秒、原生音画同步</b>,精细运镜与表演细节(表情/皮肤/动态)公认电影感最强;专业内容生产(广告片、影视预演)首选。</li>
+    <li>代价:单价高于 Seedance 约 70%(5s 720P ¥4 vs ¥2.3);叙事自动化弱一些。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#4285f4">Google</span>Veo 3.1 / <span class="tag" style="background:#10a37f">OpenAI</span>Sora 2</h3>
+  <ul>
+    <li><b>Veo 3.1</b>:写实氛围 + 48kHz 原生音频 + 4K,欧美横评综合质量常年前二;Flow 编辑工作流成熟。国内使用受限。</li>
+    <li><b>Sora 2 / Pro</b>:物理与对白口型有亮点,但 2026 年国内多模型实测(极客公园八款)结论是「确实不太行了」——可控性、一致性被国产双雄反超。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#7c3aed">MiniMax</span>海螺 · <span class="tag" style="background:#ff6a00">阿里</span>万相 Wan · <span class="tag" style="background:#e11d74">爱诗</span>PixVerse · <span class="tag" style="background:#0ea5e9">生数</span>Vidu</h3>
+  <ul>
+    <li><b>海螺 2.3</b>:人物动作自然度第一梯队,价格友好;短视频口播/达人内容常用。</li>
+    <li><b>Wan 2.6</b>:开源权重,可自部署可微调,「私有化=万相」是社区共识;衍生 ComfyUI 生态最大。</li>
+    <li><b>PixVerse V6</b>:特效玩法 + 运镜/角色连续性见长,创作者向;复杂动作需多抽卡。</li>
+    <li><b>Vidu Q3</b>:动漫风格与角色一致性差异化。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>七、按需求选型建议</h2>
+  <table>
+    <tr><th>你的需求</th><th>推荐</th></tr>
+    <tr><td>讲故事 / 多镜头短片 / 广告分镜,要成功率和性价比</td><td>Seedance 2.0 / 2.5(即梦);预算紧也适用(单条最便宜档之一)</td></tr>
+    <tr><td>专业影视交付:4K、精细表演、电影质感</td><td>可灵 3.0 / 3.0 Omni</td></tr>
+    <tr><td>写实场景 + 原生音频、海外发行</td><td>Veo 3.1</td></tr>
+    <tr><td>私有化部署 / 微调 / 自建管线</td><td>Wan 2.6(开源首选)</td></tr>
+    <tr><td>动漫 / 二次元、角色一致性</td><td>Vidu Q3</td></tr>
+    <tr><td>特效模板、社媒创意玩法</td><td>PixVerse V6</td></tr>
+    <tr><td>人物口播、达人短视频</td><td>海螺 2.3</td></tr>
+    <tr><td>AI 短剧(10 分钟/集 × 10 集这类长叙事工程)</td><td>Seedance 2.0/2.5 为主 + 可灵关键镜头;完整成本测算见本文第五节</td></tr>
+    <tr><td>只想用 Seedance 1.0 pro 同款能力</td><td>火山方舟 API(豆包/即梦同底座);新项目建议直接上 1.5 pro 以上以获得音频</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>八、名词速查</h2>
+  <ul>
+    <li><b>T2V / I2V</b>:文生视频 / 图生视频(首帧、首尾帧)。</li>
+    <li><b>多镜头(Multi-shot)</b>:一次生成包含多个分镜切换的连贯视频,Seedance 的招牌能力。</li>
+    <li><b>主体参考(Reference)</b>:上传人物/物体图片,让其在视频中保持同一身份,2.0 支持图+音+视混合参考。</li>
+    <li><b>音画同步(原生音频)</b>:模型直接生成对白/音效/音乐,而非后期配音;可灵 3.0、Veo 3.1、Seedance 1.5+ 均支持。</li>
+    <li><b>Arena Elo</b>:Artificial Analysis / arena.ai 视频竞技场为盲测人类投票分,同 LMArena 逻辑;分数随样本滚动。</li>
+    <li><b>抽卡率 / 一次成片率</b>:同提示词生成一次即可用的概率,实测成本的决定性因素。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>九、使用注意</h2>
+  <ul>
+    <li>视频榜(Elo)对提示词分布敏感:擅长「电影感镜头」的模型在大众投票里天然占优,选型仍以自己业务提示词的小样实测为准。</li>
+    <li>版本迭代极快(Seedance 一年三个大版本),1.0 pro 的分数/价格均为 2026-09 快照;「Seedance 2.1」系谣言,别按传闻版本排期。</li>
+    <li>商用注意渠道合规:即梦/火山方舟(国内)、Veo/Sora(海外)内容授权与水印政策不同。</li>
+    <li>「效果」拆维度看:质感(可灵/Veo)≠ 叙事(Seedance)≠ 自然动作(海螺)≠ 风格化(Vidu)≠ 可控自部署(Wan),没有全能冠军。</li>
+  </ul>
+</div>
+
+<footer>
+  <b>参考来源</b>:
+  <a href="https://seed.bytedance.com/en/seedance">Seedance 官方页(1.0)</a> ·
+  <a href="https://arxiv.org/html/2506.09113v1">Seedance 1.0 技术报告(arXiv)</a> ·
+  <a href="https://seed.bytedance.com/zh/blog/official-launch-of-seedance-2-0">Seedance 2.0 正式发布</a> ·
+  <a href="https://seed.bytedance.com/zh/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5">Seedance 2.5 发布</a> ·
+  <a href="https://artificialanalysis.ai/video/leaderboard/text-to-video">AA 文生视频榜</a> ·
+  <a href="https://artificialanalysis.ai/video/leaderboard/image-to-video">AA 图生视频榜</a> ·
+  <a href="https://arena.ai/leaderboard/text-to-video">arena.ai 文生视频榜(1.0 pro Elo)</a> ·
+  <a href="https://www.tmtpost.com/7876646.html">钛媒体:Seedance 2.0 凭什么刷屏</a> ·
+  <a href="https://finance.sina.com.cn/roll/2026-02-11/doc-inhmmfck3844530.shtml">东吴证券:即梦 2.0 vs 可灵 3.0 测评</a> ·
+  <a href="https://m.36kr.com/p/3886403765596418">36氪:6 款 AI 视频工具深度横评</a> ·
+  <a href="https://wallstreetcn.com/articles/3765458">华尔街见闻:国产视频模型价格对比</a> ·
+  <a href="https://view.inews.qq.com/a/20260425A04E8B00">腾讯新闻:7 款工具单秒成本实测</a> ·
+  <a href="https://post.smzdm.com/p/a7g72pnd">什么笛:128 位创作者实测 Seedance 2.0</a> ·
+  <a href="https://www.geekpark.net/news/344833">极客公园:八款视频模型实测</a> ·
+  <a href="https://aimlapi.com/blog/best-ai-video-generators-2026-veo-3-1-kling-sora-2-seedance-more-compared">AIMLAPI:2026 视频模型对比</a> ·
+  <a href="https://higgsfield.ai/blog/5-Best-AI-Video-Models-2026-Tested-Compared">Higgsfield:五大视频模型</a> ·
+  <a href="https://pixverse.ai/zh/blog/pixverse-v6-ai-video-generator-review">PixVerse V6 评测</a> ·
+  <a href="https://www.donews.com/article/detail/6885/101586.html">DoNews:Seedance 2.1 谣言辟谣</a> ·
+  <a href="https://www.volcengine.com/docs/82379/1544106">火山方舟模型价格表</a> ·
+  <a href="https://fal.ai/models/fal-ai/bytedance/seedance/v1/pro/image-to-video">fal.ai Seedance 1.0 pro 定价页</a> ·
+  <a href="https://ai.google.dev/gemini-api/docs/pricing">Gemini/Veo 官方定价</a> ·
+  <a href="https://developers.openai.com/api/docs/models/sora-2">Sora 2 官方 API 页</a> ·
+  <a href="https://kling.ai/document-api/pricing/base/video">可灵官方 API 定价</a> ·
+  <a href="https://costgoat.com/pricing/google-veo">CostGoat:Veo 计算器</a> ·
+  <a href="https://costgoat.com/pricing/sora">CostGoat:Sora 计算器</a> ·
+  <a href="https://www.atlascloud.ai/blog/tips/cheapest-ai-video-generation-api-2026">AtlasCloud:最便宜视频 API 横评</a> ·
+  <a href="https://evolink.ai/blog/best-ai-video-generation-models-2026-pricing-guide">EvoLink:2026 视频 API 定价指南</a>
+</footer>
+
+</div>
+</body>
+</html>

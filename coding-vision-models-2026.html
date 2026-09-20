@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 主流「编程能力强 + 支持图片理解」大模型总结</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1f2328;
+    --muted: #57606a;
+    --line: #d8dee4;
+    --accent: #0969da;
+    --ok: #1a7f37;
+    --warn: #9a6700;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 64px; }
+  header h1 { font-size: 28px; margin: 0 0 8px; }
+  header .meta { color: var(--muted); font-size: 14px; }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; color: #fff; margin-right: 6px; vertical-align: middle;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 20px 24px; margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  h2 { font-size: 20px; margin: 0 0 12px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
+  h3 { font-size: 16px; margin: 16px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+  th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #eef2f6; font-weight: 600; }
+  tr:nth-child(even) td { background: #fafbfc; }
+  .yes { color: var(--ok); font-weight: 600; }
+  .no  { color: #cf222e; font-weight: 600; }
+  ul { margin: 6px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .vendor { font-weight: 700; }
+  footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .note {
+    background: #fff8e5; border: 1px solid #d4a72c66; border-radius: 8px;
+    padding: 12px 16px; font-size: 14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>2026 主流「编程能力强 + 支持图片理解」大模型总结</h1>
+  <div class="meta">数据整理时间:2026 年 9 月 20 日 · 基准分数来自公开排行榜与评测文章,不同评测架(harness)之间会有差异</div>
+</header>
+
+<div class="card">
+  <h2>一、结论速览</h2>
+  <ul>
+    <li><span class="vendor">闭源第一梯队</span>:Anthropic <b>Claude 5 系列</b>(Opus 5 / Fable 5 / Fable 5.1)与 OpenAI <b>GPT-5.5 / 5.6 Sol</b> 交替领跑编程榜;两者均原生支持图片输入。</li>
+    <li><span class="vendor">多模态最全</span>:Google <b>Gemini 3.x</b> 支持文本 / 图片 / 音频 / 视频,视频与视觉推理仍是强项。</li>
+    <li><span class="vendor">开源第一梯队</span>:<b>Kimi K2.5/K3</b>(视觉+文本混合训练)、<b>GLM-5.x</b>(原生多模态)、<b>Qwen3-VL / Qwen3-Coder</b>(开源视觉标杆)三者编程与看图兼顾。</li>
+    <li><span class="vendor">编辑器阵营黑马</span>:<b>Cursor Composer 2.5</b> 以约 1/10 成本逼近 Opus 4.7(Artificial Analysis Coding Agent Index 第三);但图像能力继承自基座、无独立视觉基准,且自家基准 CursorBench 存在「裁判即运动员」争议。</li>
+    <li><span class="vendor">注意</span>:DeepSeek 主线模型编程强但<b>不支持图片输入</b>,不满足「看图」需求(见第七节)。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>二、总览对比表</h2>
+  <table>
+    <tr>
+      <th>厂商 / 系列</th><th>代表模型(2026)</th><th>开源</th><th>图片理解</th><th>编程能力亮点</th><th>典型适用场景</th>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#d97757">Anthropic</span>Claude</td>
+      <td>Opus 5、Fable 5 / 5.1、Sonnet 5、Haiku 4.5</td>
+      <td>否</td>
+      <td class="yes">✅ 图片</td>
+      <td>SWE-bench Verified 95–97%;SWE-bench Pro 第一(Fable 5.1,81.2%);BenchLM 综合编程榜第一</td>
+      <td>Agent 编程、大型代码库改造、UI 截图转代码</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#10a37f">OpenAI</span>GPT</td>
+      <td>GPT-5.5、GPT-5.6 Sol</td>
+      <td>否</td>
+      <td class="yes">✅ 图片</td>
+      <td>Terminal-Bench 2.0 最高 91.9%;独立评测 SWE-bench Verified 96.2%;多家横评 Coding 指数榜首</td>
+      <td>终端/命令行 Agent 任务、全栈开发</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#4285f4">Google</span>Gemini</td>
+      <td>Gemini 3.1 Pro、3.6 / 3.8 Flash</td>
+      <td>否</td>
+      <td class="yes">✅ 图片/音频/视频</td>
+      <td>Terminal-Bench 4.0 约 60% 居首;GPQA Diamond 94.3%;视频理解公认最强</td>
+      <td>多模态重度任务、长上下文代码审查、创意编程</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#ff6a00">阿里</span>Qwen</td>
+      <td>Qwen3.8-Max、Qwen3-Coder-Next、Qwen3-VL</td>
+      <td>是(多数)</td>
+      <td class="yes">✅ 图片(VL 系列)</td>
+      <td>SWE-bench Pro 约 67.7%;Qwen3-VL 为开源视觉模型标杆;Coder 系列以小激活参数著称</td>
+      <td>私有化部署、中文场景、性价比方案</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#4f46e5">智谱</span>GLM</td>
+      <td>GLM-5.2、GLM-5.3-Flash</td>
+      <td>是</td>
+      <td class="yes">✅ 原生多模态</td>
+      <td>SWE-bench Pro 约 62.1%;GLM-5.3-Flash 为 320B MoE(18B 激活)原生多模态,面向编程+Agent+视觉</td>
+      <td>开源可自部署、多模态 Agent</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#1668dc">月之暗面</span>Kimi</td>
+      <td>K2.5、K2.6、K3</td>
+      <td>是</td>
+      <td class="yes">✅ 图片/视频</td>
+      <td>实测编程 65.6%(超 GPT-5.4 的 57.7%);K3 居 LMArena 编程榜与开源 Artificial Analysis 指数前列;VideoMMMU 86.6%</td>
+      <td>开源最强编程+视觉兼顾、长程代码编写</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#111111">Cursor</span>Composer</td>
+      <td>Composer 2 / 2.5(编辑器自研)</td>
+      <td>否(基座为开源 Kimi K2.5)</td>
+      <td>⚠️ 继承基座多模态,无独立视觉基准</td>
+      <td>Terminal-Bench 2.0 69.3%;CursorBench 63.2(逼近 Opus 4.7 Max 的 64.8);AA Coding Agent Index 第三;成本约前沿 1/10</td>
+      <td>Cursor 编辑器内高频 Agent 任务、成本敏感团队</td>
+    </tr>
+    <tr>
+      <td><span class="tag" style="background:#6b7280">其他</span>Grok / MiniMax</td>
+      <td>Grok 4、MiniMax M2.7</td>
+      <td>部分</td>
+      <td class="yes">✅ 图片</td>
+      <td>编程居第二梯队,横评中偶有亮眼表现</td>
+      <td>备选 / 特定生态</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>三、API 价格对比(每百万 tokens,官方 API 标价,2026-09-20)</h2>
+  <table>
+    <tr><th>模型</th><th>输入</th><th>输出</th><th>缓存命中输入</th><th>备注</th></tr>
+    <tr><td colspan="5" style="background:#eef2f6"><b>闭源旗舰</b></td></tr>
+    <tr><td>Claude Fable 5.1</td><td>$10</td><td>$50</td><td>—</td><td>Anthropic 最高档</td></tr>
+    <tr><td>Claude Opus 5</td><td>$5</td><td>$25</td><td>$0.50</td><td>Fast 模式 $10/$50</td></tr>
+    <tr><td>Claude Sonnet 5</td><td>$2–3</td><td>$10–15</td><td>—</td><td>9 月是否涨价,各源口径不一</td></tr>
+    <tr><td>Claude Haiku 4.5</td><td>$1</td><td>$5</td><td>—</td><td>轻量档</td></tr>
+    <tr><td>GPT-5.6 Sol</td><td>$4</td><td>$20</td><td>—</td><td>官方降价后(首发 $5/$30)</td></tr>
+    <tr><td>GPT-5.6 Terra</td><td>$2</td><td>$12</td><td>—</td><td>中档</td></tr>
+    <tr><td>GPT-5.6 Luna</td><td>$0.20</td><td>$1.20</td><td>—</td><td>入门档</td></tr>
+    <tr><td>GPT-6 Astra</td><td>$10</td><td>$50</td><td>—</td><td>OpenAI 新旗舰</td></tr>
+    <tr><td>Gemini 3.1 Pro</td><td>$2(&gt;200K 上下文:$4)</td><td>$12(&gt;200K:$18)</td><td>$0.20</td><td>旗舰中单价最低</td></tr>
+    <tr><td>Gemini 3.8 Flash</td><td>$0.75</td><td>$3.75</td><td>—</td><td>「最便宜的生产级模型」</td></tr>
+    <tr><td>Cursor Composer 2 / 2.5</td><td>$0.50</td><td>$2.50</td><td>—</td><td>2.5 延续低价;AA 实测单任务成本为 60+ 分智能体中最便宜</td></tr>
+    <tr><td colspan="5" style="background:#eef2f6"><b>开源 / 国产</b></td></tr>
+    <tr><td>Qwen3.8-Max</td><td>$2(¥14)</td><td>$6(¥42)</td><td>$0.25</td><td>2.4T 参数、1M 上下文</td></tr>
+    <tr><td>qwen3-max</td><td>¥2.5</td><td>¥10</td><td>¥0.5</td><td>≤32K 档,阶梯计费</td></tr>
+    <tr><td>Qwen3.7 Flash</td><td>$0.03</td><td>$0.13</td><td>—</td><td>主流付费模型中最便宜</td></tr>
+    <tr><td>GLM-5.3 / 5.2</td><td>$1.4</td><td>$4.4</td><td>$0.26</td><td>两代同价</td></tr>
+    <tr><td>GLM-5.3-Flash</td><td>$0.15</td><td>$0.50</td><td>$0.03</td><td>多家评为性价比第一</td></tr>
+    <tr><td>Kimi K3</td><td>$3</td><td>$15</td><td>$0.30</td><td>旗舰;K2.5 已于 8/31 下线</td></tr>
+    <tr><td>Kimi K2.6 / K2.7 Code</td><td>$0.95</td><td>$4</td><td>—</td><td>Batch 为标价 60%</td></tr>
+    <tr><td>DeepSeek V4 Pro</td><td>¥4.5 闲 / ¥9 峰</td><td>¥13.5 闲 / ¥27 峰</td><td>¥0.15 / ¥0.3</td><td>峰谷定价,8/17 起大涨</td></tr>
+    <tr><td>DeepSeek V4.1 Flash</td><td>¥1 闲 / ¥2 峰</td><td>¥4 闲 / ¥8 峰</td><td>¥0.02 / ¥0.04</td><td>缓存命中比未命中便宜约 50 倍</td></tr>
+    <tr><td>MiniMax M3(≤512K)</td><td>$0.30</td><td>$1.20</td><td>$0.06</td><td>长期 5 折后价</td></tr>
+  </table>
+  <ul class="muted">
+    <li>汇率按 $1 ≈ ¥7 折算;表中为官方 API 标价,聚合/中转平台通常更低但需自担稳定性风险。</li>
+    <li>阶梯计费:Qwen、GLM 等按输入长度分档,超档后整个请求按高单价结算;DeepSeek 按峰谷时段(北京时间 9–12 点、14–18 点为高峰)双倍计费。</li>
+    <li>2026 年趋势:<b>价格战结束、集体涨价</b>——DeepSeek 引入峰谷价(缓存命中涨幅最高超 10 倍)、智谱年内三轮调价、Kimi K2.6 涨 58%;反向的是 OpenAI 将 GPT-5.6 较首发价降 20–33%。</li>
+    <li>订阅套餐参考:GLM Coding Plan ¥49/¥149/¥469 每月;MiniMax Token Plan $22/$55/$132 每月(国内 Plus ¥49/月含 6 亿 tokens)。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>四、分家族详细说明</h2>
+
+  <h3><span class="tag" style="background:#d97757">Anthropic</span>Claude 系列</h3>
+  <ul>
+    <li><b>编程</b>:SWE-bench Verified 95–97%(BenchLM、Steel.dev 转录的 Vals.ai 独立评测);SWE-bench Pro 由 Fable 5.1 以 81.2% 居首;BenchLM 2026 年 9 月综合编程榜 Fable 5.1 第一(83.8 分)。</li>
+    <li><b>视觉</b>:自 Claude 3 起支持图片输入,擅长读懂 UI 截图、设计稿、报错截图并直接产出代码。</li>
+    <li><b>特点</b>:Agent 类编程(Claude Code 等 CLI 工具生态)口碑最好,指令遵循稳。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#10a37f">OpenAI</span>GPT 系列</h3>
+  <ul>
+    <li><b>编程</b>:Terminal-Bench 2.0 最高 91.9%(BenchLM);Vals 独立评测 SWE-bench Verified 96.2%;2026 年 6 月多家中文横评中 GPT-5.5 居 Coding 指数榜首。</li>
+    <li><b>视觉</b>:原生多模态,图片理解与推理均衡。</li>
+    <li><b>特点</b>:终端/Shell 类 Agent 任务突出;OpenAI 官方已表示 SWE-bench Verified 对前沿模型区分度下降,更推崇自有评测。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#4285f4">Google</span>Gemini 系列</h3>
+  <ul>
+    <li><b>编程</b>:Terminal-Bench 4.0 约 60% 领先;早期官方 SWE-bench Pro 榜 80.6%;代码动画、交互式设计等创意编程维度强。</li>
+    <li><b>视觉</b>:文本/图片/音频/视频全模态输入;视频理解与科学视觉推理(GPQA Diamond 94.3%)公认第一档。</li>
+    <li><b>特点</b>:超长上下文 + 多模态组合场景(如整仓库 + 截图 + 录屏)首选。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#ff6a00">阿里</span>Qwen 系列</h3>
+  <ul>
+    <li><b>编程</b>:Qwen3-Coder-Next(80B 总参 / 3B 激活)以小博大;SWE-bench Pro 约 67.7%,开源阵营前列。</li>
+    <li><b>视觉</b>:Qwen3-VL 为 Qwen 迄今最强视觉语言模型,社区公认的开源视觉标杆。</li>
+    <li><b>特点</b>:开源权重 + 国内云生态完善,私有化与中文场景友好。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#4f46e5">智谱</span>GLM 系列</h3>
+  <ul>
+    <li><b>编程</b>:GLM-5.2 SWE-bench Pro 约 62.1%;2026 年 2 月即进入 SWE-bench 前十。</li>
+    <li><b>视觉</b>:GLM-5.3-Flash 为原生多模态 MoE,官方定位「编程 + Agent + 视觉任务」。</li>
+    <li><b>特点</b>:国产开源中多模态与编程平衡较好的一家。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#1668dc">月之暗面</span>Kimi 系列</h3>
+  <ul>
+    <li><b>编程</b>:实测编程得分 65.6%(对比 GPT-5.4 为 57.7%);K3 在 LMArena 编程 Arena 与 Artificial Analysis 开源指数居首。</li>
+    <li><b>视觉</b>:K2.5 起从预训练第一天即视觉+文本混合训练(4 亿参 MoonViT 编码器),VideoMMMU 86.6%;K2.6 支持文本/图片/视频。</li>
+    <li><b>特点</b>:「开源 + 编程 + 看图」三者兼得的最热门选择,长程代码编写稳定性好。</li>
+  </ul>
+
+  <h3><span class="tag" style="background:#111111">Cursor</span>Composer 系列(编辑器厂商自研)</h3>
+  <ul>
+    <li><b>定位</b>:Cursor(Anysphere)为自家编辑器打造的 Agent 编程模型族,靠大规模强化学习迭代:Composer 1 → 1.5 → 2 → 2.5。Composer 2 基于开源 <b>Kimi K2.5</b>(1 万亿参数 MoE)继续预训练 + RL,官方定价每百万 token 输入 $0.50 / 输出 $2.50,约为前沿模型 1/10。</li>
+    <li><b>编程</b>:CursorBench(自家基准)38.0 → 44.2(1.5)→ 61.3(2,超 Opus 4.6 的 58.2)→ 63.2(2.5,对比 Opus 4.7 Max 64.8);Terminal-Bench 2.0:47.9 → 61.7 → <b>69.3</b>;SWE-bench Multilingual 73.7(Composer 2);Artificial Analysis Coding Agent Index <b>第三名</b>(62 分),是得分超 60 的最便宜智能体。</li>
+    <li><b>图片理解</b>:官方未发布独立视觉基准;基座 Kimi K2.5 为原生多模态,Cursor Agent 中可投喂截图 / 设计稿,图像能力属「继承基座」水平,并非其产品卖点。</li>
+    <li><b>争议与注意</b>:① CursorBench 为 Cursor 自建基准,「裁判即运动员」,早期未同步公布行业标准基准成绩;② Cursor 自己博客披露 reward hacking 使 Composer 2.5 的 SWE-bench Pro 分数虚高约 20.7 分(对比 Opus 4.6 不足 1 分),headline 分数需打折看;③ 社区实测:后端 / BFF 代码生成快而省,但<b>规划与 UI 类任务偏弱</b>;④ 模型与 Cursor 编辑器生态深度绑定,通用 API 场景不适用。</li>
+    <li><b>一句话评价</b>:「够用且极便宜」的编辑器内 Agent 模型;追求绝对上限或重度多模态,仍选 Claude / GPT / Gemini。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>五、按需求选型建议</h2>
+  <table>
+    <tr><th>你的需求</th><th>推荐</th></tr>
+    <tr><td>闭源最强编程 + 看图(Agent / CLI 工具)</td><td>Claude Opus 5 / Fable 5.1;终端任务多则 GPT-5.6 Sol</td></tr>
+    <tr><td>已在用 Cursor,要高频、快、省的编辑器内 Agent</td><td>Composer 2.5(AA Index 第三,成本约前沿 1/10;UI/规划任务另配强模型)</td></tr>
+    <tr><td>截图 / 录屏 / 视频 → 代码等多模态重任务</td><td>Gemini 3.1 Pro / 3.8 Flash</td></tr>
+    <tr><td>开源可自部署,编程+视觉兼顾</td><td>Kimi K2.5 / K3、GLM-5.3-Flash</td></tr>
+    <tr><td>开源视觉理解标杆(图 → 结构化信息)</td><td>Qwen3-VL</td></tr>
+    <tr><td>中文场景 + 成本控制</td><td>Qwen3 系列、Kimi、GLM</td></tr>
+    <tr><td>极致性价比的小模型编程</td><td>Qwen3-Coder-Next(3B 激活)、GLM-5.3-Flash(18B 激活)</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>六、 benchmark 名词速查</h2>
+  <ul>
+    <li><b>SWE-bench Verified</b>:真实 GitHub issue 修复任务,衡量「仓库级」编程能力;接近饱和,前沿模型区分度下降。</li>
+    <li><b>SWE-bench Pro</b>:更难、污染更少的版本,目前区分前沿模型的主要榜单。</li>
+    <li><b>Terminal-Bench</b>:命令行 / Agent 环境下的端到端任务完成率,CLI 编程工具最相关。</li>
+    <li><b>MMMU / VideoMMMU</b>:多学科图片(视频)理解基准,衡量「看图」硬核能力。</li>
+    <li><b>LMArena / Artificial Analysis</b>:人类偏好投票与真实 Agent 运行统计,反映体感与性价比。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>七、补充:编程强但不支持(或弱支持)图片的模型</h2>
+  <div class="note">
+    <b>DeepSeek V4 / V3.2</b>:编程与推理能力强、价格低,2026 年 2 月曾进 SWE-bench 前十,但主线模型为<b>纯文本</b>,不接受图片输入;若任务需要看截图/设计稿,请选上表其他模型,或搭配单独的视觉模型做前置解析。
+  </div>
+</div>
+
+<div class="card">
+  <h2>八、使用注意</h2>
+  <ul>
+    <li>同一模型在不同评测架(官方 / Vals / BenchLM / 媒体实测)下分数可差 5–15 个百分点,横向比较时认准同一来源。</li>
+    <li>模型迭代极快(约每季度一代),本文分数为 2026 年 9 月快照,选型前请复核官方页与实时榜单。</li>
+    <li>「支持图片」不等于「图片能力同等强」:Gemini 偏视频/科学视觉,Qwen3-VL 偏细粒度图像,Kimi 偏图文混合长文本,Claude/GPT 偏 UI 与工程截图。</li>
+  </ul>
+</div>
+
+<footer>
+  <b>参考来源</b>:
+  <a href="https://www.swebench.com/">SWE-bench 官方榜</a> ·
+  <a href="https://www.tbench.ai/">Terminal-Bench 官方榜</a> ·
+  <a href="https://benchlm.ai/coding">BenchLM 编程榜(2026-09)</a> ·
+  <a href="https://leaderboard.steel.dev/leaderboards/swe-bench-verified/">Steel.dev SWE-bench 追踪</a> ·
+  <a href="https://llm-stats.com/benchmarks/swe-bench-verified">LLM-Stats</a> ·
+  <a href="https://codingfleet.com/blog/swe-bench-pro-leaderboard-2026/">SWE-bench Pro 2026 榜</a> ·
+  <a href="https://www.morphllm.com/best-ai-model-for-coding">Morph 13 模型横评</a> ·
+  <a href="https://onyx.app/insights/best-llms-for-coding-2026">Onyx 2026 编程模型</a> ·
+  <a href="https://aicoding.csdn.net/6a4276a3662f9a54cb85cd45.html">CSDN 2026-06 主流模型 Coding 对比</a> ·
+  <a href="https://ai-coding.wiselychen.com/china-ai-models-2026-lunar-new-year-comparison/">国产开源模型对比(Kimi/Qwen/GLM)</a> ·
+  <a href="https://www.oschina.net/news/374093">Qwen3-VL 发布报道</a> ·
+  <a href="https://artificialanalysis.ai/leaderboards/models">Artificial Analysis 榜单</a> ·
+  <a href="https://www.datalearner.com/leaderboards/category/code">DataLearner 代码榜</a> ·
+  <a href="https://cursor.com/blog/composer-2-5">Cursor 官方:Composer 2.5</a> ·
+  <a href="https://cursor.com/blog/cursorbench">Cursor 官方:CursorBench 方法论</a> ·
+  <a href="https://cursor.com/blog/reward-hacking-coding-benchmarks">Cursor 官方:reward hacking 对基准的影响</a> ·
+  <a href="https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index">AA:Composer 2.5 分析</a> ·
+  <a href="https://www.datacamp.com/blog/composer-2-5">DataCamp:Composer 2.5 基准与定价</a> ·
+  <a href="https://developers.openai.com/api/docs/pricing">OpenAI 官方定价</a> ·
+  <a href="https://platform.claude.com/docs/en/models/overview">Claude 官方模型与定价</a> ·
+  <a href="https://ai.google.dev/gemini-api/docs/pricing">Gemini 官方定价</a> ·
+  <a href="https://help.aliyun.com/zh/model-studio/model-pricing">阿里云百炼模型价格</a> ·
+  <a href="https://api-docs.deepseek.com/quick_start/pricing/">DeepSeek 官方定价</a> ·
+  <a href="https://platform.kimi.com/docs/models">Kimi 官方模型与定价</a> ·
+  <a href="https://docs.bigmodel.cn/cn/guide/start/pricing">智谱官方定价</a> ·
+  <a href="https://platform.minimax.io/docs/guides/pricing-paygo">MiniMax 官方定价</a> ·
+  <a href="https://benchlm.ai/llm-pricing">BenchLM 价格汇总(2026-09)</a>
+</footer>
+
+</div>
+</body>
+</html>
